@@ -1,0 +1,142 @@
+.calculate-page {
+  padding-top: calc(42rpx + env(safe-area-inset-top));
+}
+
+.page-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.heading-mark {
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 78rpx;
+  height: 78rpx;
+  margin-right: 22rpx;
+  border: 3rpx solid #078c82;
+  border-radius: 22rpx;
+  color: #078c82;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.heading-title {
+  margin-bottom: 5rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.mode-switch {
+  display: flex;
+  flex-direction: row;
+  margin-top: 32rpx;
+  padding: 6rpx;
+  border-radius: 20rpx;
+  background: #e7eeeb;
+}
+
+.mode-tab {
+  flex: 1;
+  min-height: 72rpx;
+  padding: 14rpx 8rpx;
+  border-radius: 15rpx;
+  background: transparent;
+  color: #65736e;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.mode-tab--active {
+  background: #ffffff;
+  color: #078c82;
+  font-weight: 700;
+  box-shadow: 0 3rpx 12rpx rgba(18, 33, 41, 0.08);
+}
+
+.calculator-card {
+  margin-top: 26rpx;
+  padding: 26rpx;
+}
+
+.field-block--last {
+  margin-top: 24rpx;
+}
+
+.field-label {
+  margin-bottom: 10rpx;
+  color: #61716c;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.value-input {
+  height: 96rpx;
+  padding: 0 22rpx;
+  border: 2rpx solid #c5d0cc;
+  border-radius: 18rpx;
+  background: #fbfcfc;
+  color: #122129;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.result-card {
+  min-height: 190rpx;
+  margin-top: 26rpx;
+  padding: 28rpx;
+  border: 2rpx dashed #c8d3cf;
+  border-radius: 24rpx;
+  background: #f1f5f3;
+}
+
+.result-card--ready {
+  border-color: #77bbb5;
+  border-style: solid;
+  background: #eaf7f5;
+}
+
+.result-label {
+  color: #61716c;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.result-value {
+  margin-top: 12rpx;
+  color: #067a71;
+  font-size: 58rpx;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.result-detail,
+.result-placeholder {
+  margin-top: 10rpx;
+  color: #71807b;
+  font-size: 25rpx;
+}
+
+.action-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 26rpx;
+}
+
+.action-button {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-button--last {
+  margin-left: 18rpx;
+}
+
+.formula-note {
+  margin-top: 18rpx;
+  text-align: center;
+}

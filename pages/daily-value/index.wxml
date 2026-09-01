@@ -1,0 +1,32 @@
+<view class="ent-page value-page">
+  <view class="ent-title">每天值多少</view>
+  <view class="ent-subtitle">喜欢的东西，越用越划算</view>
+
+  <view class="example-link" bindtap="fillExample">填入示例看看</view>
+
+  <view class="ent-surface value-form">
+    <view class="value-field"><view class="value-label">物品名称</view><input class="value-input" value="{{name}}" maxlength="30" placeholder="例如：我的手机" bindinput="onNameInput" /></view>
+    <view class="value-field"><view class="value-label">买入价格</view><view class="price-line"><text>¥</text><input class="value-input price-input" type="digit" value="{{price}}" placeholder="0.00" bindinput="onPriceInput" /></view></view>
+    <view class="value-field"><view class="value-label">购买日期</view><picker mode="date" value="{{purchaseDate}}" end="{{today}}" bindchange="onDateChange"><view class="date-picker {{purchaseDate ? '' : 'date-picker--empty'}}">{{purchaseDate || '选择日期'}}<text>›</text></view></picker></view>
+    <view class="value-field"><view class="value-label">希望降到每天</view><view class="price-line"><text>¥</text><input class="value-input price-input" type="digit" value="{{targetDaily}}" placeholder="3" bindinput="onTargetInput" /><text class="per-day">/ 天</text></view></view>
+    <view class="primary-button value-button" bindtap="calculate" hover-class="ent-pressed">算算现在值多少</view>
+  </view>
+
+  <view class="value-result" wx:if="{{result}}">
+    <view class="result-label">目前每天价值</view>
+    <view class="result-number"><text>¥</text>{{result.dailyText}}<text class="result-unit">/ 天</text></view>
+    <view class="result-copy">已经陪你 {{result.usedDays}} 天</view>
+    <view class="result-copy" wx:if="{{result.remainingDays}}">再用 {{result.remainingDays}} 天，可降到 ¥{{result.targetText}} / 天</view>
+    <view class="result-copy result-copy--done" wx:else>已经达到你的日均目标</view>
+    <view class="result-track"><view class="result-track-fill" style="width: {{result.progress}}%"></view></view>
+  </view>
+
+  <view class="ent-section-title" wx:if="{{records.length}}">最近记录</view>
+  <view class="record-list ent-surface" wx:if="{{records.length}}">
+    <view class="record-row" wx:for="{{records}}" wx:key="id" data-id="{{item.id}}" bindtap="useRecord" bindlongpress="removeRecord" hover-class="ent-pressed">
+      <view><view class="record-name">{{item.name}}</view><view class="record-date">买于 {{item.purchaseDate}}</view></view>
+      <view class="record-value">¥{{item.dailyText}} / 天</view>
+    </view>
+  </view>
+  <view class="ent-private">长按最近记录可以删除；所有数据只保存在本机。</view>
+</view>

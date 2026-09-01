@@ -1,0 +1,34 @@
+<view class="money-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">额</view>
+    <view>
+      <view class="heading-title">金额大写</view>
+      <view class="helper">人民币数字金额转中文大写，本机完成</view>
+    </view>
+  </view>
+
+  <view class="surface input-card">
+    <view class="field-label">数字金额</view>
+    <view class="amount-row">
+      <text class="currency-mark">¥</text>
+      <input class="amount-input" type="digit" value="{{amount}}" maxlength="18" placeholder="例如 1001.05" bindinput="onInput" />
+    </view>
+    <view class="input-footer">
+      <text>最多 12 位整数、2 位小数</text>
+      <text class="example-link" bindtap="fillExample">填入示例</text>
+    </view>
+  </view>
+
+  <view class="result-card {{result ? 'result-card--ready' : ''}}">
+    <view class="result-label">中文大写结果</view>
+    <text class="result-value" wx:if="{{result}}" user-select="true">{{result}}</text>
+    <view class="error-copy" wx:elif="{{error}}">{{error}}</view>
+    <view class="result-placeholder" wx:else>输入后自动转换</view>
+  </view>
+
+  <view class="action-row">
+    <button class="outline-button action-button" bindtap="clearAll">清空</button>
+    <button class="primary-button action-button action-button--last" disabled="{{!result}}" bindtap="copyResult">复制结果</button>
+  </view>
+  <view class="helper safety-note">结果适合日常填写与核对；正式票据仍请以财务制度和人工复核为准。</view>
+</view>

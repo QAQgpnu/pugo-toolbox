@@ -1,0 +1,36 @@
+<view class="period-page page-shell">
+  <view class="period-hero"><view class="period-mark">期</view><view class="period-copy"><view class="period-title">姨妈周期记录</view><view class="period-subtitle">记下开始日，用历史间隔估算下一次</view></view></view>
+  <view class="privacy-card"><view class="privacy-title">日期只保存在这台手机</view><view class="privacy-copy">不会上传，也不会进入匿名统计；你可以随时单条删除或全部清空。</view></view>
+
+  <view class="entry-card">
+    <view class="entry-title">记录一次开始日</view>
+    <view class="field-label">开始日期</view>
+    <picker mode="date" value="{{selectedDate}}" end="{{today}}" bindchange="onDateChange"><view class="date-picker {{selectedDate ? '' : 'date-picker--empty'}}">{{selectedDate || '选择日期'}}<view class="picker-arrow"></view></view></picker>
+    <view class="field-label field-label--spaced">持续天数</view>
+    <view class="duration-line"><input class="duration-input" type="number" value="{{duration}}" maxlength="2" bindinput="onDurationInput" /><text>天</text></view>
+    <button class="add-button" bindtap="addRecord">保存这次记录</button>
+  </view>
+
+  <view class="estimate-card" wx:if="{{result}}">
+    <view class="estimate-head"><view><view class="estimate-kicker">下一次预计</view><view class="estimate-date">{{result.nextDate}}</view></view><view class="confidence-badge">{{result.confidence}}</view></view>
+    <view class="window-copy">可能落在 {{result.windowStart}} 至 {{result.windowEnd}}</view>
+    <view class="metrics-row">
+      <view class="metric"><view class="metric-number">{{result.averageCycle}}<text>天</text></view><view class="metric-label">平均周期</view></view>
+      <view class="metric-divider"></view>
+      <view class="metric"><view class="metric-number">{{result.averageDuration}}<text>天</text></view><view class="metric-label">平均持续</view></view>
+    </view>
+    <view class="fallback-field" wx:if="{{result.intervals.length === 0}}"><text>只有一条记录，先按</text><input type="number" value="{{fallbackCycle}}" maxlength="2" bindinput="onFallbackInput" /><text>天估算</text></view>
+  </view>
+
+  <view class="records-head" wx:if="{{records.length}}"><view class="records-title">历史记录</view><button class="clear-records" bindtap="clearRecords">全部清空</button></view>
+  <view class="records-card" wx:if="{{records.length}}">
+    <view class="record-row" wx:for="{{records}}" wx:key="date">
+      <view class="record-dot {{item.latest ? 'record-dot--latest' : ''}}"></view>
+      <view class="record-main"><view class="record-date">{{item.date}}{{item.latest ? ' · 最近一次' : ''}}</view><view class="record-duration">持续 {{item.duration}} 天</view></view>
+      <button class="delete-record" data-date="{{item.date}}" bindtap="removeRecord">删除</button>
+    </view>
+  </view>
+  <view class="empty-history" wx:else>添加一条记录后，这里会出现你的周期趋势。</view>
+
+  <view class="medical-note">本工具只按历史日期做生活记录与统计，周期会自然波动。结果不能用于避孕、备孕判断或疾病诊断；如有明显异常或不适，请咨询专业医疗人员。</view>
+</view>

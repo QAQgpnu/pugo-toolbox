@@ -1,0 +1,32 @@
+<view class="ent-page moyu-page">
+  <view class="ent-title">今日摸鱼</view>
+  <view class="ent-subtitle">认真休息，也值得被记住</view>
+
+  <view class="ent-surface timer-card {{active ? 'timer-card--active' : ''}}">
+    <view class="timer-state"><view class="timer-dot"></view>{{active ? '正在放空 · ' + selectedScene : '准备好就开始'}}</view>
+    <view class="timer-clock">{{clock}}</view>
+    <view class="timer-action {{active ? 'timer-action--stop' : ''}}" bindtap="toggleTimer" hover-class="ent-pressed">{{active ? '结束摸鱼' : '开始摸鱼'}}</view>
+  </view>
+
+  <view class="scene-list">
+    <view class="scene {{selectedScene === item ? 'scene--active' : ''}}" wx:for="{{scenes}}" wx:key="*this" data-scene="{{item}}" bindtap="chooseScene">{{item}}</view>
+  </view>
+
+  <view class="undo" wx:if="{{lastRecord}}"><text>刚刚的记录已保存</text><text class="undo-action" bindtap="undoLast">误触，撤销</text></view>
+
+  <view class="ent-stats">
+    <view class="ent-surface ent-stat"><view class="ent-stat-label">今日累计</view><view class="ent-stat-value stat-value-small">{{todayText}}</view></view>
+    <view class="ent-surface ent-stat"><view class="ent-stat-label">本周累计</view><view class="ent-stat-value stat-value-small">{{weekText}}</view></view>
+  </view>
+
+  <view class="ent-section-title">最近 7 天</view>
+  <view class="ent-surface week-chart">
+    <view class="week-item" wx:for="{{week}}" wx:key="dateKey">
+      <view class="week-bar {{item.isToday ? 'week-bar--today' : ''}}" style="height: {{item.height}}rpx"></view>
+      <view class="week-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="ent-private">记录只保存在本机，不登录、不上传，也不做排行榜。</view>
+  <view class="ent-danger-link" bindtap="clearHistory">清空全部记录</view>
+</view>

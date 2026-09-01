@@ -1,0 +1,172 @@
+.text-page {
+  padding-top: 28rpx;
+}
+
+.editor {
+  overflow: hidden;
+}
+
+.text-input {
+  display: block;
+  width: 100%;
+  height: 430rpx;
+  padding: 28rpx;
+  background: #ffffff;
+  color: #122129;
+  font-size: 29rpx;
+  line-height: 1.65;
+}
+
+.text-placeholder {
+  color: #9aa5a1;
+}
+
+.stats-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 92rpx;
+  border-top: 1rpx solid #e3e9e6;
+  background: #ffffff;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.stat-value {
+  color: #122129;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.stat-label {
+  margin-left: 8rpx;
+  color: #71807b;
+  font-size: 25rpx;
+}
+
+.stats-divider {
+  width: 1rpx;
+  height: 42rpx;
+  background: #dfe6e3;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24rpx;
+}
+
+.quick-button {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-button + .quick-button {
+  margin-left: 16rpx;
+}
+
+.operation-section {
+  margin-top: 36rpx;
+}
+
+.section-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operation-title {
+  margin-bottom: 18rpx;
+}
+
+.section-heading .helper {
+  margin-bottom: 18rpx;
+}
+
+.operation-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 116rpx;
+  padding: 18rpx 24rpx;
+  background: #ffffff;
+  transition: background 120ms ease;
+}
+
+.operation-row + .operation-row {
+  border-top: 1rpx solid #e3e9e6;
+}
+
+.operation-row--selected {
+  background: #f1f9f7;
+}
+
+.operation-row--pressed {
+  background: #edf5f3;
+}
+
+.operation-symbol {
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 20rpx;
+  border: 3rpx solid #078c82;
+  border-radius: 16rpx;
+  color: #078c82;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.check-box {
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 42rpx;
+  height: 42rpx;
+  margin-left: 18rpx;
+  border: 3rpx solid #aab5b1;
+  border-radius: 11rpx;
+  background: #ffffff;
+}
+
+.operation-row--selected .check-box {
+  border-color: #078c82;
+  background: #078c82;
+}
+
+.check-mark {
+  width: 17rpx;
+  height: 9rpx;
+  margin-top: -4rpx;
+  border-bottom: 4rpx solid transparent;
+  border-left: 4rpx solid transparent;
+  transform: rotate(-45deg);
+}
+
+.operation-row--selected .check-mark {
+  border-color: #ffffff;
+}
+
+.process-button {
+  margin-top: 34rpx;
+}
+
+.process-helper {
+  display: block;
+  margin-top: 16rpx;
+  padding: 0 12rpx;
+  text-align: center;
+}

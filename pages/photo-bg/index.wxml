@@ -1,0 +1,38 @@
+<view class="photo-page page-shell">
+  <view class="photo-hero">
+    <view class="photo-mark">照</view>
+    <view class="photo-copy"><view class="photo-title">证件照制作</view><view class="photo-subtitle">纯色背景本机换底，再选常见尺寸</view></view>
+  </view>
+  <view class="scope-note"><view class="scope-title">只处理与照片边缘连通的背景</view><view class="scope-copy">照片全程留在本机，不会扫描整张图替换相似颜色。建议使用白、蓝、红等纯色背景，人物与四周留出空间；复杂风景背景暂不适用。</view></view>
+  <view class="photo-stage {{processing ? 'photo-stage--disabled' : ''}}" aria-disabled="{{processing}}" bindtap="onStageTap" hover-class="photo-pressed">
+    <image class="photo-preview" wx:if="{{outputPath}}" src="{{outputPath}}" mode="aspectFit" />
+    <image class="photo-preview" wx:elif="{{sourcePath}}" src="{{sourcePath}}" mode="aspectFit" />
+    <view class="photo-empty" wx:else><view class="empty-icon">＋</view><view class="empty-title">拍摄或选择单人照片</view><view class="empty-copy">正面、光线均匀、人物轮廓完整效果更好</view></view>
+    <view class="processing-mask" wx:if="{{processing}}">正在处理，请稍候…</view>
+  </view>
+  <button class="change-photo" wx:if="{{sourcePath}}" disabled="{{processing}}" bindtap="chooseImage">重新拍摄或选择</button>
+  <view class="control-card" wx:if="{{foregroundPath}}">
+    <view class="control-label">证件照尺寸</view>
+    <scroll-view class="size-scroll" scroll-x enable-flex>
+      <button wx:for="{{sizes}}" wx:key="id" class="size-option {{sizeId === item.id ? 'size-option--active' : ''}}" disabled="{{processing}}" data-id="{{item.id}}" bindtap="selectSize">
+        <view class="size-name">{{item.name}}</view><view class="size-mm">{{item.mm}}</view><view class="size-px">{{item.width}} × {{item.height}} px</view>
+      </button>
+    </scroll-view>
+    <view class="control-label control-label--spaced">背景颜色</view>
+    <view class="color-row">
+      <button wx:for="{{backgrounds}}" wx:key="id" class="color-option {{backgroundId === item.id ? 'color-option--active' : ''}}" disabled="{{processing}}" data-id="{{item.id}}" bindtap="selectBackground"><text class="color-dot" style="background: {{item.hex}}"></text>{{item.name}}</button>
+    </view>
+    <view class="control-label control-label--spaced">人物大小</view>
+    <slider min="85" max="125" value="{{portraitScale}}" show-value disabled="{{processing}}" activeColor="#438edb" bindchange="onScaleChange" />
+    <view class="control-label control-label--spaced">人物上下位置</view>
+    <slider min="-18" max="18" value="{{portraitOffsetY}}" show-value disabled="{{processing}}" activeColor="#438edb" bindchange="onOffsetChange" />
+    <view class="size-help">尺寸是常用参考值，正式报名或办证前请核对受理方要求。</view>
+  </view>
+  <view class="action-row" wx:if="{{outputPath}}">
+    <button class="secondary-button" disabled="{{processing}}" bindtap="compareOriginal">查看原图</button>
+    <button class="primary-button-photo" disabled="{{processing}}" bindtap="saveOutput">保存证件照</button>
+  </view>
+  <view class="local-note">图片只在用户主动操作时于本机临时处理，不上传、不写入工具历史，也不用于训练。若人物或衣服与背景颜色过于接近，请换一张轮廓更清楚的照片。</view>
+  <canvas class="processor-canvas" canvas-id="sourceCanvas" width="{{sourceCanvasWidth}}" height="{{sourceCanvasHeight}}" style="width: {{sourceCanvasWidth}}px; height: {{sourceCanvasHeight}}px;"></canvas>
+  <canvas class="processor-canvas" canvas-id="photoCanvas" width="{{canvasWidth}}" height="{{canvasHeight}}" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+</view>

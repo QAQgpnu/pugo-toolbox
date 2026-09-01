@@ -1,0 +1,92 @@
+<view class="home page-shell page-shell--with-nav">
+  <view class="hero">
+    <text class="hero-title">浦哥工具箱</text>
+    <text class="hero-subtitle">把小事，三秒搞定</text>
+  </view>
+
+  <view class="today-card">
+    <view class="today-head">
+      <view>
+        <view class="today-title">今天</view>
+        <view class="today-date">{{todayLabel}}</view>
+      </view>
+      <view class="today-summary {{todayDashboard.totalCount ? 'today-summary--pending' : ''}}">{{todayDashboard.totalCount ? todayDashboard.pendingItemCount + ' 项待处理' : '状态轻松'}}</view>
+    </view>
+    <view class="today-list" wx:if="{{todayDashboard.items.length}}">
+      <view class="today-row today-row--{{item.tone}}" wx:for="{{todayDashboard.items}}" wx:key="id" data-path="{{item.path}}" bindtap="openTodayItem" hover-class="card-pressed">
+        <view class="today-badge">{{item.badge}}</view>
+        <view class="today-main">
+          <view class="today-item-title">{{item.title}}</view>
+          <view class="today-item-desc">{{item.description}}</view>
+        </view>
+        <view class="chevron"></view>
+      </view>
+      <view class="today-more" wx:if="{{todayDashboard.hiddenCount}}">还有 {{todayDashboard.hiddenCount}} 类事项，处理后会自动更新</view>
+    </view>
+    <view class="today-empty" wx:else>
+      <view class="today-empty-mark">✓</view>
+      <view class="today-empty-copy">
+        <view class="today-empty-title">今天没有紧急事项</view>
+        <view class="today-empty-desc">出门或睡前，也可以快速做一次安心自查</view>
+      </view>
+      <view class="today-empty-action" bindtap="startSafetyCheck" hover-class="button-pressed">去自查</view>
+    </view>
+  </view>
+
+  <view class="section favorites-quick">
+    <view class="section-heading-row">
+      <view class="section-title section-title--flush">我的常用</view>
+      <view class="section-head-actions">
+        <view class="section-hint">最多显示 4 个</view>
+        <view class="section-action" bindtap="goFavorites">查看全部</view>
+      </view>
+    </view>
+    <view class="favorite-quick-grid" wx:if="{{favoriteTools.length}}">
+      <view class="favorite-quick-cell" wx:for="{{favoriteTools}}" wx:key="id">
+        <view class="favorite-quick-card" data-id="{{item.id}}" bindtap="openTool" hover-class="card-pressed">
+          <view class="favorite-quick-symbol">{{item.symbol}}</view>
+          <view class="favorite-quick-name">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="favorite-guide" wx:else bindtap="openToolDrawer" hover-class="card-pressed">
+      <view class="favorite-guide-star">☆</view>
+      <view class="favorite-guide-main">
+        <view class="favorite-guide-title">把常用工具放到首页</view>
+        <view class="favorite-guide-desc">打开底部“＋”，点工具右上角星标即可收藏</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tool-launch-card" bindtap="openToolDrawer" hover-class="card-pressed">
+    <view class="tool-launch-plus">＋</view>
+    <view class="tool-launch-main">
+      <view class="tool-launch-title">找一个工具</view>
+      <view class="tool-launch-desc">点底部正中的“＋”，可搜索或按分类挑选</view>
+    </view>
+    <view class="tool-launch-action">打开</view>
+  </view>
+
+  <view class="section recent-section">
+    <view class="section-heading-row">
+      <view class="section-title section-title--flush">最近使用</view>
+      <view class="section-action" wx:if="{{recentTools.length}}" bindtap="goRecent">查看全部</view>
+    </view>
+    <view class="surface recent-list" wx:if="{{recentTools.length}}">
+      <view class="recent-row" wx:for="{{recentTools}}" wx:key="id" data-id="{{item.id}}" bindtap="openTool" hover-class="recent-row--pressed">
+        <view class="recent-symbol">{{item.symbol}}</view>
+        <view class="row-main">
+          <view class="recent-name">{{item.name}}</view>
+          <view class="recent-desc">{{item.description}}</view>
+        </view>
+        <view class="chevron"></view>
+      </view>
+    </view>
+    <view class="surface empty-state recent-empty" wx:else>
+      <view class="empty-mark">近</view>
+      <text>用过的工具会留在这里</text>
+    </view>
+  </view>
+</view>
+
+<bottom-nav id="bottomNav" current="home" bindfavoriteschange="onFavoritesChange" />

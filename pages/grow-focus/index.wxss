@@ -1,0 +1,27 @@
+@import "../../styles/entertainment.wxss";
+
+.mode-list { display: flex; flex-direction: row; margin-top: 26rpx; margin-right: -7rpx; margin-left: -7rpx; }
+.focus-mode { margin: 0 7rpx; padding: 17rpx 24rpx; border: 1rpx solid #dce3e0; border-radius: 18rpx; background: #fff; color: #71807b; font-size: 22rpx; }
+.focus-mode--active { border-color: #8bcfc7; background: #e8f7f4; color: #078c82; font-weight: 750; }
+.focus-stage { position: relative; display: flex; flex-direction:row; align-items: center; justify-content: center; width: 500rpx; height: 500rpx; margin: 36rpx auto 0; border: 18rpx solid #d9e8e5; border-top-color: #078c82; border-right-color: #078c82; border-bottom-color: #078c82; border-radius: 50%; background: #fff; transition: box-shadow 220ms ease, transform 220ms ease; }
+.focus-stage--running { box-shadow: 0 0 0 18rpx rgba(7, 140, 130, 0.06), 0 26rpx 58rpx rgba(7, 140, 130, 0.12); }
+.focus-inner { text-align: center; }
+.sprout { position: relative; width: 112rpx; height: 112rpx; margin: 0 auto 12rpx; }
+.stem { position: absolute; left: 54rpx; bottom: 4rpx; width: 6rpx; height: 78rpx; border-radius: 6rpx; background: #078c82; }
+.leaf { position: absolute; width: 50rpx; height: 31rpx; border-radius: 80% 20% 80% 20%; background: #4db6a8; }
+.leaf--left { left: 8rpx; top: 42rpx; transform: scaleX(-1) rotate(20deg); }
+.leaf--right { right: 7rpx; top: 21rpx; transform: rotate(20deg); }
+.leaf--extra-left { left: 4rpx; top: 72rpx; opacity: 0.85; transform: scale(0.75) scaleX(-1) rotate(18deg); }
+.leaf--extra-right { right: 2rpx; top: 56rpx; opacity: 0.85; transform: scale(0.75) rotate(18deg); }
+.leaf--top { left: 32rpx; top: -2rpx; transform: rotate(-35deg); }
+.focus-clock { color: #122129; font-size: 76rpx; font-weight: 850; letter-spacing: -2rpx; }
+.focus-status { margin-top: 28rpx; color: #71807b; font-size: 23rpx; text-align: center; }
+.focus-primary { display: flex; flex-direction:row; align-items: center; justify-content: center; width: 330rpx; min-height: 94rpx; margin: 22rpx auto 0; border-radius: 24rpx; background: #078c82; color: #fff; font-size: 29rpx; font-weight: 800; box-shadow: 0 16rpx 34rpx rgba(7, 140, 130, 0.18); }
+.focus-cancel { margin-top: 18rpx; color: #9b6d48; font-size: 22rpx; text-align: center; }
+.focus-summary { margin-top: 34rpx; color: #122129; font-size: 27rpx; font-weight: 750; text-align: center; }
+.garden { display: flex; flex-direction:row; align-items: flex-end; justify-content: space-between; min-height: 150rpx; margin-top: 18rpx; padding: 22rpx 24rpx; }
+.garden-day { flex: 1; color: #8a9692; font-size: 20rpx; text-align: center; }
+.garden-plant { display: flex; flex-direction:row; align-items: flex-end; justify-content: center; height: 66rpx; margin-bottom: 9rpx; color: #b8c9c5; font-size: 36rpx; }
+.garden-plant--1 { color: #7bcabe; font-size: 42rpx; }
+.garden-plant--2, .garden-plant--3 { color: #39a99b; font-size: 46rpx; }
+.garden-plant--4 { color: #078c82; font-size: 50rpx; }

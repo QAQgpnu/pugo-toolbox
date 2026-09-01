@@ -1,0 +1,25 @@
+<view class="steam-page page-shell">
+  <view class="steam-hero"><view class="steam-mark">S</view><view class="steam-copy"><view class="steam-title">Steam 限免雷达</view><view class="steam-subtitle">先把看到的限免记下来，首页会提示截止</view></view></view>
+  <view class="status-card"><view class="status-head"><view><view class="status-kicker">当前版本</view><view class="status-title">本机清单提醒</view></view><view class="status-count">{{activeCount}} 个待领取</view></view><view class="status-copy">实时自动推送需要稳定授权数据源、云端定时任务和微信订阅消息逐次授权。正式接入前不冒充“已推送”。</view></view>
+
+  <view class="add-card">
+    <view class="add-title">记下一条限免</view>
+    <view class="field-label">游戏名称</view><input class="name-input" maxlength="60" value="{{name}}" placeholder="例如：某某游戏" bindinput="onNameInput" />
+    <view class="field-label field-label--spaced">活动类型</view><picker range="{{types}}" range-key="name" value="{{typeIndex}}" bindchange="onTypeChange"><view class="type-picker">{{types[typeIndex].name}}<view class="picker-arrow"></view></view></picker>
+    <view class="field-label field-label--spaced">截止日期</view><picker mode="date" value="{{endDate}}" start="{{today}}" bindchange="onEndDateChange"><view class="type-picker {{endDate ? '' : 'type-picker--empty'}}">{{endDate || '选择日期'}}<view class="picker-arrow"></view></view></picker>
+    <button class="add-button" bindtap="addRecord">加入我的雷达</button>
+  </view>
+
+  <view class="list-head" wx:if="{{records.length}}"><view class="list-title">我的限免清单</view><view class="list-tip">长按可删除</view></view>
+  <view class="records-card" wx:if="{{records.length}}">
+    <view class="record-row record-row--{{item.state}} {{item.claimed ? 'record-row--claimed' : ''}}" wx:for="{{records}}" wx:key="id" data-id="{{item.id}}" bindlongpress="removeRecord">
+      <view class="type-badge">{{item.typeShort}}</view>
+      <view class="record-main"><view class="record-name">{{item.name}}</view><view class="record-meta">{{item.endDate}} · {{item.countdown}}</view></view>
+      <view class="record-actions"><button class="copy-action" data-id="{{item.id}}" bindtap="copyName">复制</button><button class="claim-action {{item.claimed ? 'claim-action--done' : ''}}" data-id="{{item.id}}" bindtap="toggleClaimed">{{item.claimed ? '已领' : '标记领取'}}</button></view>
+    </view>
+  </view>
+  <view class="empty-card" wx:else><view class="empty-mark">＋</view><view class="empty-title">还没有限免记录</view><view class="empty-copy">在朋友群、Steam 商店或可信媒体看到活动后，先记下截止日期。</view></view>
+
+  <view class="plan-card"><view class="plan-title">自动推送怎么落地</view><view class="plan-step"><text>1</text><view>只接入经过核验、能区分“永久入库”和“免费周末”的合法来源</view></view><view class="plan-step"><text>2</text><view>云端定时去重，用户主动订阅后才申请微信消息授权</view></view><view class="plan-step"><text>3</text><view>来源异常时自动停发，不收集 Steam 账号，也不把本机清单上传</view></view></view>
+  <view class="steam-note">本工具不是 Steam 或 Valve 官方服务。活动时间请在 Steam 商店最终核实。</view>
+</view>

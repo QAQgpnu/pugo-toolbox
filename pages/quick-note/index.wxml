@@ -1,0 +1,11 @@
+<view class="page-shell">
+  <view class="tool-intro"><view class="tool-intro-kicker">防健忘 · 自动清理</view><view class="tool-intro-title">只记现在需要的小事</view><view class="tool-intro-desc">停车层、快递柜、座位号或临时位置，到期自动从列表消失，不把记事本越堆越乱。</view></view>
+  <view class="section"><view class="section-title-row"><view class="section-title">新建临时记忆卡</view><button class="example-chip" bindtap="fillExample" hover-class="example-chip--pressed">试试示例</button></view><view class="surface form-card">
+    <view class="field"><view class="field-label">一句标题</view><input class="field-input" value="{{title}}" maxlength="40" placeholder="例如：停车位置" placeholder-class="field-placeholder" bindinput="onTitleInput" /></view>
+    <view class="field"><view class="field-label">要记住的内容</view><textarea class="field-textarea" value="{{detail}}" maxlength="120" placeholder="例如：B2 层 C36，靠近 4 号电梯" placeholder-class="field-placeholder" bindinput="onDetailInput" /></view>
+    <view class="field"><view class="field-label">保留多久</view><view class="chip-row"><view class="choice-chip {{ttlHours == item.value ? 'choice-chip--active' : ''}}" wx:for="{{ttlOptions}}" wx:key="value" data-hours="{{item.value}}" bindtap="chooseTtl">{{item.label}}</view></view></view>
+    <button class="primary-button form-submit" bindtap="addNote">保存临时卡</button>
+  </view></view>
+  <view class="section"><view class="section-title">当前临时卡</view><view wx:if="{{decorated.length}}"><view class="surface record-card" wx:for="{{decorated}}" wx:key="id"><view class="record-head"><view class="record-main"><view class="record-title">{{item.title}}<text class="record-tag record-tag--warning">{{item.remaining}}</text></view><view class="record-desc">{{item.detail}}</view></view><button class="text-action" data-id="{{item.id}}" catchtap="removeNote">已处理</button></view></view></view><view class="surface empty-state" wx:else><view class="empty-mark">记</view><text>没有待记住的临时信息</text></view></view>
+  <view class="notice">数据只保存在当前设备。请勿记录取款密码、门锁密码、验证码、证件号等敏感信息。</view>
+</view>

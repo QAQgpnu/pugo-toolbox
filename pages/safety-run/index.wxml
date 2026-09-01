@@ -1,0 +1,51 @@
+<view class="run-page page-shell" wx:if="{{session}}">
+  <block wx:if="{{!completed}}">
+    <view class="run-heading">
+      <view class="run-kicker">本次现场确认</view>
+      <view class="run-title">{{session.listName}}</view>
+      <view class="run-progress-copy">已确认 {{progress.checked}} / {{progress.total}} 项</view>
+    </view>
+
+    <view class="progress-track">
+      <view class="progress-value" style="width: {{progress.percent}}%;"></view>
+    </view>
+
+    <view class="important-notice">
+      <view class="notice-mark">!</view>
+      <view>请看一眼现场后再确认；橙色项目是重点检查。</view>
+    </view>
+
+    <view class="check-list">
+      <view
+        wx:for="{{items}}"
+        wx:key="id"
+        class="check-item {{item.checked ? 'check-item--checked' : ''}} {{item.critical ? 'check-item--critical' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="toggleItem"
+      >
+        <view class="check-box">{{item.checked ? '✓' : ''}}</view>
+        <view class="check-label">{{item.label}}</view>
+        <view class="critical-label" wx:if="{{item.critical}}">重点</view>
+        <view class="confirm-copy">{{item.checked ? '已确认' : '现场确认'}}</view>
+      </view>
+    </view>
+
+    <view class="unfinished-banner" wx:if="{{!progress.complete}}">
+      还有 {{progress.total - progress.checked}} 项未确认；退出后进度会保留，可稍后继续。
+    </view>
+    <view class="ready-banner" wx:else>所有项目已确认，请完成本次登记。</view>
+
+    <button class="primary-button complete-button" disabled="{{!progress.complete}}" bindtap="completeCheck">完成本次自查</button>
+    <view class="safety-boundary">本功能只辅助回忆，不代表绝对安全。发现异常时请立即停止操作并联系专业人员。</view>
+  </block>
+
+  <view class="completion" wx:else>
+    <view class="completion-icon">✓</view>
+    <view class="completion-title">本次清单已完成</view>
+    <view class="completion-list">{{session.listName}}</view>
+    <view class="completion-count">{{progress.total}} 项全部确认</view>
+    <view class="completion-time">{{completedTime}}</view>
+    <view class="completion-note">登记已保存在本机。清单完成不代表绝对安全，请以现场实际情况为准。</view>
+    <button class="primary-button back-button" bindtap="backToLists">完成并返回</button>
+  </view>
+</view>

@@ -1,0 +1,376 @@
+.home { padding-top: env(safe-area-inset-top); }
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  margin-top: 72rpx;
+}
+
+.hero-title {
+  color: #122129;
+  font-size: 52rpx;
+  font-weight: 800;
+  letter-spacing: 1rpx;
+  line-height: 1.25;
+}
+
+.hero-subtitle {
+  margin-top: 8rpx;
+  color: #74817d;
+  font-size: 28rpx;
+}
+
+.today-card {
+  overflow: hidden;
+  margin-top: 28rpx;
+  padding: 28rpx 24rpx 18rpx;
+  border: 1rpx solid #d6dfdb;
+  border-radius: 30rpx;
+  background: #ffffff;
+  box-shadow: 0 14rpx 34rpx rgba(18, 33, 41, 0.06);
+}
+
+.today-head,
+.section-heading-row,
+.today-empty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.today-title {
+  color: #122129;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.today-date {
+  margin-top: 2rpx;
+  color: #8a9692;
+  font-size: 21rpx;
+}
+
+.today-summary {
+  padding: 10rpx 16rpx;
+  border-radius: 16rpx;
+  background: #e8f7f4;
+  color: #078c82;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.today-summary--pending {
+  background: #fff3dc;
+  color: #b46500;
+}
+
+.today-list {
+  margin-top: 16rpx;
+  border-top: 8rpx solid #dce8e5;
+}
+
+.today-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 112rpx;
+  padding: 18rpx 0;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.today-row + .today-row { border-top: 1rpx solid #edf1ef; }
+
+.today-badge,
+.today-empty-mark {
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  background: #e8f7f4;
+  color: #078c82;
+  font-weight: 900;
+}
+
+.today-badge {
+  width: 66rpx;
+  height: 66rpx;
+  margin-right: 18rpx;
+  font-size: 25rpx;
+}
+
+.today-row--warning .today-badge,
+.today-row--danger .today-badge {
+  background: #fff3dc;
+  color: #b46500;
+}
+
+.today-main,
+.today-empty-copy,
+.favorite-guide-main,
+.tool-launch-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.today-item-title {
+  color: #122129;
+  font-size: 27rpx;
+  font-weight: 700;
+}
+
+.today-item-desc {
+  margin-top: 5rpx;
+  overflow: hidden;
+  color: #71807b;
+  font-size: 22rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.today-more {
+  padding: 10rpx 0 2rpx;
+  color: #8a9692;
+  font-size: 21rpx;
+  text-align: center;
+}
+
+.today-empty {
+  min-height: 116rpx;
+  margin-top: 16rpx;
+  border-top: 8rpx solid #bfe6df;
+}
+
+.today-empty-mark {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 16rpx;
+}
+
+.today-empty-title {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.today-empty-desc {
+  margin-top: 4rpx;
+  color: #71807b;
+  font-size: 21rpx;
+}
+
+.today-empty-action {
+  flex: none;
+  min-height: 64rpx;
+  margin-left: 12rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 16rpx;
+  background: #078c82;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.section-title--flush { margin-bottom: 0; }
+
+.section-head-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section-hint {
+  color: #8a9692;
+  font-size: 21rpx;
+}
+
+.favorite-quick-grid {
+  display: flex;
+  flex-direction: row;
+  margin-top: 18rpx;
+  margin-right: -6rpx;
+  margin-left: -6rpx;
+}
+
+.favorite-quick-cell {
+  width: 25%;
+  min-width: 0;
+  padding: 0 6rpx;
+}
+
+.favorite-quick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 150rpx;
+  padding: 18rpx 8rpx 14rpx;
+  border: 1rpx solid #dce3e0;
+  border-radius: 24rpx;
+  background: #ffffff;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.favorite-quick-symbol,
+.recent-symbol,
+.tool-launch-plus {
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #e8f7f4;
+  color: #078c82;
+  font-weight: 800;
+}
+
+.favorite-quick-symbol {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  font-size: 23rpx;
+}
+
+.favorite-quick-name {
+  width: 100%;
+  margin-top: 12rpx;
+  overflow: hidden;
+  color: #122129;
+  font-size: 21rpx;
+  font-weight: 650;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.favorite-guide,
+.tool-launch-card,
+.recent-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.favorite-guide {
+  min-height: 116rpx;
+  margin-top: 18rpx;
+  padding: 20rpx 22rpx;
+  border: 2rpx dashed #b9d8d3;
+  border-radius: 24rpx;
+  background: #f4fbf9;
+}
+
+.favorite-guide-star {
+  margin-right: 18rpx;
+  color: #d68400;
+  font-size: 46rpx;
+}
+
+.favorite-guide-title,
+.tool-launch-title {
+  color: #122129;
+  font-size: 25rpx;
+  font-weight: 750;
+}
+
+.favorite-guide-desc,
+.tool-launch-desc,
+.recent-desc {
+  margin-top: 5rpx;
+  color: #71807b;
+  font-size: 21rpx;
+  line-height: 1.45;
+}
+
+.tool-launch-card {
+  min-height: 124rpx;
+  margin-top: 26rpx;
+  padding: 20rpx 22rpx;
+  border: 1rpx solid #a9d7d1;
+  border-radius: 26rpx;
+  background: linear-gradient(135deg, #e6f6f3, #ffffff);
+  box-shadow: 0 12rpx 28rpx rgba(7, 140, 130, 0.08);
+}
+
+.tool-launch-plus {
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 18rpx;
+  border-radius: 22rpx;
+  background: #078c82;
+  color: #ffffff;
+  font-size: 42rpx;
+  font-weight: 400;
+}
+
+.tool-launch-action,
+.section-action {
+  flex: none;
+  color: #078c82;
+  font-size: 22rpx;
+  font-weight: 750;
+}
+
+.tool-launch-action {
+  min-height: 62rpx;
+  margin-left: 14rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 16rpx;
+  background: #dff3f0;
+}
+
+.section-action { padding: 14rpx 0 14rpx 20rpx; }
+
+.recent-list { margin-top: 18rpx; }
+
+.recent-row {
+  min-height: 104rpx;
+  padding: 16rpx 22rpx;
+  transition: opacity 120ms ease, background-color 120ms ease;
+}
+
+.recent-row + .recent-row { border-top: 1rpx solid #e7ecea; }
+
+.recent-row--pressed {
+  background: #f2f7f5;
+  opacity: 0.8;
+}
+
+.recent-symbol {
+  width: 58rpx;
+  height: 58rpx;
+  margin-right: 18rpx;
+  border-radius: 18rpx;
+  font-size: 21rpx;
+}
+
+.recent-name {
+  color: #122129;
+  font-size: 27rpx;
+  font-weight: 700;
+}
+
+.recent-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-empty {
+  min-height: 190rpx;
+  margin-top: 18rpx;
+  font-size: 25rpx;
+}
+
+.card-pressed {
+  opacity: 0.78;
+  transform: scale(0.975);
+}
+
+.button-pressed {
+  opacity: 0.82;
+  transform: scale(0.96);
+}

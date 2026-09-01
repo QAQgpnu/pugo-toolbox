@@ -1,0 +1,82 @@
+<view class="retire-page page-shell">
+  <view class="feature-hero">
+    <view class="hero-mark">退</view>
+    <view class="hero-copy">
+      <view class="hero-title">职工基本养老金试算</view>
+      <view class="hero-subtitle">仅估算基础养老金和个人账户养老金两部分</view>
+    </view>
+  </view>
+
+  <view class="scope-note">
+    <view class="scope-title">只适用于城镇职工基本养老保险的简化试算</view>
+    <view class="scope-copy">不适用于城乡居民养老保险，也不含机关事业单位差异、视同缴费年限、过渡性养老金、地方补贴、利息和政策调整。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">准备一组假设</view>
+      <button class="example-button" bindtap="fillExample">填入示例</button>
+    </view>
+    <view class="surface form-panel">
+      <view class="field-block">
+        <view class="field-title">退休时当地养老金计发基数</view>
+        <view class="field-help">不知道时，可先用当地公布值或保守估计值</view>
+        <view class="input-shell"><input class="number-input" type="digit" value="{{calculationBase}}" maxlength="12" placeholder="例如 9000" data-field="calculationBase" bindinput="onFieldInput" /><text class="input-unit">元/月</text></view>
+      </view>
+      <view class="field-block">
+        <view class="field-title">本人平均缴费指数</view>
+        <view class="field-help">1.0 表示大致按当地平均工资水平缴费</view>
+        <view class="input-shell"><input class="number-input" type="digit" value="{{averageIndex}}" maxlength="5" placeholder="例如 1.0" data-field="averageIndex" bindinput="onFieldInput" /><text class="input-unit">倍</text></view>
+      </view>
+      <view class="double-row">
+        <view class="half-field">
+          <view class="field-title">累计缴费年限</view>
+          <view class="input-shell"><input class="number-input" type="digit" value="{{contributionYears}}" maxlength="5" placeholder="30" data-field="contributionYears" bindinput="onFieldInput" /><text class="input-unit">年</text></view>
+        </view>
+        <view class="half-field half-field--last">
+          <view class="field-title">预计退休年龄</view>
+          <picker mode="selector" range="{{ageOptions}}" value="{{ageIndex}}" bindchange="onAgeChange"><view class="picker-shell"><text>{{retirementAge}}</text><text class="input-unit">岁</text></view></picker>
+        </view>
+      </view>
+      <view class="field-block">
+        <view class="field-title">退休时个人账户预计余额</view>
+        <view class="field-help">可从社保渠道查询当前余额，再结合未来缴费保守估计</view>
+        <view class="input-shell"><input class="number-input" type="digit" value="{{accountBalance}}" maxlength="14" placeholder="例如 120000" data-field="accountBalance" bindinput="onFieldInput" /><text class="input-unit">元</text></view>
+      </view>
+      <button class="calculate-button" bindtap="calculate">生成准备估算</button>
+    </view>
+  </view>
+
+  <view class="result-section" wx:if="{{result}}">
+    <view class="result-primary">
+      <view class="result-label">职工基本养老金两部分月估算</view>
+      <view class="result-number">¥ {{result.estimatedMonthlyText}}</view>
+      <view class="result-caption">年估算约 ¥ {{result.estimatedAnnualText}}</view>
+    </view>
+    <view class="result-split">
+      <view class="result-piece">
+        <view class="piece-label">基础养老金</view>
+        <view class="piece-value">¥ {{result.basicPensionText}}</view>
+        <view class="piece-note">计发基数与缴费指数、年限</view>
+      </view>
+      <view class="piece-divider"></view>
+      <view class="result-piece">
+        <view class="piece-label">个人账户养老金</view>
+        <view class="piece-value">¥ {{result.accountPensionText}}</view>
+        <view class="piece-note">余额 ÷ {{result.paymentMonths}} 个月</view>
+      </view>
+    </view>
+    <view class="formula-card surface">
+      <view class="formula-title">本次使用的简化公式</view>
+      <view class="formula-row"><text>指数化月工资</text><text class="formula-value">¥ {{result.indexedMonthlySalaryText}}</text></view>
+      <view class="formula-copy">基础养老金 =（计发基数 + 计发基数 × 平均缴费指数）÷ 2 × 缴费年限 × 1%</view>
+      <view class="formula-copy">个人账户养老金 = 个人账户余额 ÷ 对应退休年龄的计发月数</view>
+    </view>
+    <button class="clear-result" bindtap="clearAll">换一组参数</button>
+  </view>
+
+  <view class="warning-note">
+    <view class="warning-title">重要提醒</view>
+    <view class="warning-copy">城乡居民养老保险、机关事业单位及含视同缴费或过渡性养老金的情况，请改用当地人社部门官方计算器。退休政策、延迟退休安排、最低缴费年限及地方细则可能变化，实际待遇以社保经办机构核定为准。输入不会保存或上传。</view>
+  </view>
+</view>

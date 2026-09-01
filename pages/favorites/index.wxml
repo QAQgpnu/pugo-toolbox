@@ -1,0 +1,22 @@
+<view class="page-shell page-shell--with-nav">
+  <view class="surface" wx:if="{{tools.length}}">
+    <view class="favorite-row" wx:for="{{tools}}" wx:key="id" data-id="{{item.id}}" bindtap="openTool">
+      <view class="tool-symbol">{{item.symbol}}</view>
+      <view class="row-main">
+        <view class="row-title">{{item.name}}</view>
+        <view class="row-desc">{{item.description}}</view>
+      </view>
+      <button class="remove-button" data-id="{{item.id}}" catchtap="removeFavorite">移除</button>
+      <view class="chevron"></view>
+    </view>
+  </view>
+
+  <view class="surface empty-state favorites-empty" wx:else>
+    <view class="empty-mark">☆</view>
+    <text class="empty-title">还没有收藏工具</text>
+    <text class="helper">点底部正中的“＋”，再点工具右上角星标即可收藏。</text>
+    <button class="outline-button home-button" bindtap="goHome">回到首页</button>
+  </view>
+</view>
+
+<bottom-nav current="favorites" bindfavoriteschange="onFavoritesChange" />

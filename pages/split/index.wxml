@@ -1,0 +1,12 @@
+<view class="page-shell">
+  <view class="tool-intro"><view class="tool-intro-kicker">生活计算 · 精确到分</view><view class="tool-intro-title">总价减优惠，加运费，再平摊</view><view class="tool-intro-desc">适合聚餐、拼单和团购。除不尽的一分钱会明确分给前几个人，不让总数对不上。</view></view>
+  <view class="section"><view class="section-title-row"><view class="section-title">填写账单</view><button class="example-chip" bindtap="fillExample" hover-class="example-chip--pressed">试试示例</button></view><view class="surface form-card">
+    <view class="field"><view class="field-label">商品或账单总额</view><input class="field-input" type="digit" value="{{total}}" placeholder="0.00" placeholder-class="field-placeholder" bindinput="onTotalInput" /></view>
+    <view class="two-fields"><view class="field half"><view class="field-label">优惠金额</view><input class="field-input" type="digit" value="{{discount}}" placeholder="0.00" placeholder-class="field-placeholder" bindinput="onDiscountInput" /></view><view class="field half"><view class="field-label">运费/附加费</view><input class="field-input" type="digit" value="{{extra}}" placeholder="0.00" placeholder-class="field-placeholder" bindinput="onExtraInput" /></view></view>
+    <view class="field"><view class="field-label">分摊人数</view><input class="field-input" type="number" value="{{people}}" maxlength="3" bindinput="onPeopleInput" /></view>
+    <button class="primary-button calculate-button" bindtap="calculate">开始分摊</button>
+  </view></view>
+  <view class="split-result" wx:if="{{result}}"><view class="result-label">最终实付</view><view class="result-total">¥{{result.totalText}}</view><view class="result-main" wx:if="{{result.remainder}}"><text>{{result.remainder}} 人各付 ¥{{result.firstText}}</text><text>其余各付 ¥{{result.baseText}}</text></view><view class="result-main" wx:else><text>{{result.people}} 人各付 ¥{{result.baseText}}</text></view><button class="copy-button" bindtap="copyResult">复制分摊结果</button></view>
+  <view class="section" wx:if="{{history.length}}"><view class="section-head"><view class="section-title">最近计算</view><button class="clear-link" bindtap="clearHistory">清空</button></view><view class="surface"><view class="history-row" wx:for="{{history}}" wx:key="at"><text>实付 ¥{{item.totalText}}</text><text class="history-meta">{{item.people}} 人 · ¥{{item.baseText}} 起</text></view></view></view>
+  <view class="notice">本工具只做等额分摊，不处理个人消费差异、税务或财务结算责任。计算和历史均保存在本机。</view>
+</view>

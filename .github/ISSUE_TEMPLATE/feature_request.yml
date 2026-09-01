@@ -1,0 +1,27 @@
+name: Small tool proposal
+description: Suggest one focused, local-first utility
+title: "[Tool] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What small problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: flow
+    attributes:
+      label: Suggested three-step flow
+    validations:
+      required: true
+  - type: dropdown
+    id: data
+    attributes:
+      label: Does it need network or sensitive data?
+      options:
+        - No, fully local
+        - Uses sensitive local data
+        - Needs network access
+    validations:
+      required: true

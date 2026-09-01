@@ -1,0 +1,19 @@
+@import "../../styles/tool-form.wxss";
+.two-fields { display:flex; flex-direction:row; margin-top:22rpx; margin-right:-8rpx; margin-left:-8rpx; }
+.two-fields .field { margin-top:0; }
+.half { flex:1; min-width:0; margin-right:8rpx; margin-left:8rpx; }
+.form-actions { display:flex; flex-direction:row; margin-top:26rpx; margin-right:-8rpx; margin-left:-8rpx; }
+.form-actions > button { margin-right:8rpx; margin-left:8rpx; }
+.example-button { flex:none; min-height:88rpx; padding:18rpx 22rpx; border:1rpx solid #bfd1cc; border-radius:20rpx; background:#fff; color:#58706a; font-size:25rpx; }
+.calculate-button { margin-top:26rpx; }
+.split-result { margin-top:28rpx; padding:32rpx 28rpx; border-radius:24rpx; background:#122129; color:#fff; text-align:center; }
+.result-label { color:#91d9d1; font-size:23rpx; }
+.result-total { margin-top:8rpx; font-size:56rpx; font-weight:850; }
+.result-main { display:flex; flex-direction:column; margin-top:16rpx; font-size:27rpx; }
+.result-main text + text { margin-top:7rpx; }
+.copy-button { margin-top:24rpx; min-height:76rpx; padding:16rpx; border-radius:18rpx; background:#078c82; color:#fff; font-weight:700; }
+.section-head { display:flex; flex-direction:row; align-items:center; justify-content:space-between; }
+.clear-link { padding:10rpx; background:transparent; color:#a65d00; font-size:23rpx; }
+.history-row { display:flex; flex-direction:row; justify-content:space-between; padding:20rpx 24rpx; }
+.history-row + .history-row { border-top:1rpx solid #e5ebe8; }
+.history-meta { color:#75847f; }

@@ -1,0 +1,26 @@
+<view class="ent-page woodfish-page">
+  <view class="ent-title">功德木鱼</view>
+  <view class="ent-subtitle">敲一下，给自己一点轻松</view>
+
+  <view class="ent-stats">
+    <view class="ent-surface ent-stat"><view class="ent-stat-label">今日</view><view class="ent-stat-value">{{today}}</view></view>
+    <view class="ent-surface ent-stat"><view class="ent-stat-label">累计</view><view class="ent-stat-value">{{total}}</view></view>
+  </view>
+
+  <view class="woodfish-stage">
+    <view class="woodfish-ring {{hitting ? 'woodfish-ring--hit' : ''}}"></view>
+    <view class="woodfish-feedback {{hitting ? 'woodfish-feedback--show' : ''}}">{{feedbackText}}</view>
+    <view class="woodfish {{hitting ? 'woodfish--hit' : ''}}" bindtap="tapWoodfish" bindlongpress="startAutoHit" bindtouchend="stopAutoHit" hover-class="none">
+      <view class="woodfish-stick"></view>
+      <view class="woodfish-mouth"></view>
+    </view>
+  </view>
+  <view class="woodfish-hint">轻点木鱼 · 长按可以连续敲</view>
+
+  <view class="ent-surface setting-list">
+    <view class="setting-row"><view><view class="setting-title">声音反馈</view><view class="setting-desc">一声轻响，不打扰</view></view><switch checked="{{sound}}" color="#078C82" bindchange="toggleSound" /></view>
+    <view class="setting-row"><view><view class="setting-title">轻振动</view><view class="setting-desc">每次敲击都有回应</view></view><switch checked="{{vibration}}" color="#078C82" bindchange="toggleVibration" /></view>
+  </view>
+  <view class="ent-danger-link" bindtap="clearToday">清空今日记录</view>
+  <view class="ent-private">数据只保存在本机；“功德”是轻松计数，不代表任何现实承诺。</view>
+</view>

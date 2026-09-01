@@ -1,0 +1,36 @@
+<view class="page-shell page-shell--with-nav recent-page">
+  <view class="recent-hero">
+    <view class="recent-hero-mark">近</view>
+    <view class="recent-hero-main">
+      <view class="recent-hero-title">最近使用</view>
+      <view class="recent-hero-desc">刚用过的工具，回来继续会更快</view>
+    </view>
+  </view>
+
+  <view class="section-heading-row">
+    <view class="section-title section-title--flush">访问记录</view>
+    <view class="clear-action" wx:if="{{tools.length}}" bindtap="clearRecent">清空</view>
+  </view>
+
+  <view class="surface recent-list" wx:if="{{tools.length}}">
+    <view class="recent-row" wx:for="{{tools}}" wx:key="id" data-id="{{item.id}}" bindtap="openTool" hover-class="recent-row--pressed">
+      <view class="recent-symbol">{{item.symbol}}</view>
+      <view class="row-main">
+        <view class="recent-name">{{item.name}}</view>
+        <view class="recent-desc">{{item.description}}</view>
+      </view>
+      <view class="chevron"></view>
+    </view>
+  </view>
+
+  <view class="surface recent-empty" wx:else>
+    <view class="empty-mark">近</view>
+    <view class="recent-empty-title">还没有最近使用</view>
+    <view class="recent-empty-desc">打开任意工具后，就会自动出现在这里</view>
+    <view class="open-drawer-action" bindtap="openToolDrawer" hover-class="open-drawer-action--pressed">打开工具抽屉</view>
+  </view>
+
+  <view class="recent-note">最近记录只保存在当前设备，清空后不会影响收藏。</view>
+</view>
+
+<bottom-nav id="bottomNav" current="recent" />

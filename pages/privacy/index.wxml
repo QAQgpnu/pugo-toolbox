@@ -1,0 +1,87 @@
+<view class="page-shell privacy-page">
+  <view class="privacy-intro">
+    <view class="privacy-mark">透明</view>
+    <view class="privacy-title">本地工具本机处理，数据边界清清楚楚</view>
+    <view class="privacy-subtitle">浦哥工具箱不要求授权昵称、头像或手机号，也不需要单独登录；工具输入、结果和记录默认只在当前设备处理。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">我们如何处理数据</view>
+    <view class="surface policy-card">
+      <view class="policy-item">
+        <view class="policy-name">文本、试算和成分内容</view>
+        <view class="policy-copy">文本处理、日期、换算、公积金与职工基本养老金试算、宠物年龄、记分周期、成分表 OCR 和成分对比只在当前设备计算。工资、养老金参数、成分照片和成分原文不会写入历史。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">收藏、最近使用和本地工具记录</view>
+        <view class="policy-copy">保存在微信提供的本地缓存中，用于恢复你的使用状态。包括安心自查、物品位置、更换周期、临时卡、食物日期、轮值历史、今日任务、分摊、娱乐计时、用户主动保存的姨妈周期日期和 Steam 限免清单；这些内容不会上传。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">图片压缩、时间水印与成分表照片</view>
+        <view class="policy-copy">图片压缩和时间水印在本机完成；化妆品成分表使用微信端侧文字识别。原图、成分照片、识别文字和水印时间不上传、不写入工具历史；只有你点击“保存”后才申请把图片结果写入系统相册。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">证件照本机换底</view>
+        <view class="policy-copy">只有你主动使用“证件照制作”时，才会读取所选或拍摄的当前照片；本工具只在设备本机识别与图片边缘连通的纯色背景，再合成底色和常见尺寸。照片、像素、处理结果和人物信息都不上传，不读取 OPENID，不写入匿名统计或工具历史，也不另作训练用途。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">本地数据删除</view>
+        <view class="policy-copy">可在“设置 → 数据管理”中分别清除，也可一次清空全部本地数据。</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">匿名使用数据</view>
+    <view class="surface policy-card">
+      <view class="policy-item">
+        <view class="policy-name">会记录什么</view>
+        <view class="policy-copy">可能记录工具名称、所选操作、成功或失败、耗时档位、复制和收藏动作，用于判断哪些功能真正有用。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">明确不会记录什么</view>
+        <view class="policy-copy">不会把你的文本原文、工资与养老金参数、周期日期、成分表、图片内容、文件名、换算数值、随机选项或搜索词作为分析事件上传。</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">使用的设备能力</view>
+    <view class="surface policy-card">
+      <view class="policy-item">
+        <view class="policy-name">写入剪贴板</view>
+        <view class="policy-copy">只有你点击复制后，才会把工具结果、GitHub 链接或公众号名称写入系统剪贴板。本程序不会读取剪贴板。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">拍摄、选择图片与保存到相册</view>
+        <view class="policy-copy">仅在证件照制作、图片压缩、时间水印或化妆品成分识别中由你主动触发。拒绝相机或相册权限不影响其他工具；化妆品仍可手动输入。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">轻振反馈</view>
+        <view class="policy-copy">随机选择、公平轮值或安心自查确认时可轻振一下，可在设置中关闭。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">分享</view>
+        <view class="policy-copy">只有你主动使用微信分享菜单时才会触发；分享卡片不包含你的本地数据。</view>
+      </view>
+      <view class="policy-item">
+        <view class="policy-name">问题反馈</view>
+        <view class="policy-copy">只有你主动打开“问题反馈”并提交时，反馈内容才会通过微信提供的反馈能力发送给开发者。请勿在反馈中填写身份证号、密码等敏感信息。</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">敏感与专业信息边界</view>
+    <view class="surface policy-card">
+      <view class="policy-item"><view class="policy-name">姨妈周期</view><view class="policy-copy">只做本机生活记录与历史间隔估算，不用于避孕、备孕或医疗诊断，可随时单条删除或全部清空。</view></view>
+      <view class="policy-item"><view class="policy-name">财务与驾照</view><view class="policy-copy">公积金和退休结果是用户自填参数的参考试算；记分周期助手不连接政务数据，真实记分须登录交管 12123 核验。</view></view>
+      <view class="policy-item"><view class="policy-name">Steam 活动</view><view class="policy-copy">当前仅保存用户手工添加的本机清单并在首页提示临近截止，不收集 Steam 账号，也不宣称已经提供云端自动推送。</view></view>
+    </view>
+  </view>
+
+  <view class="notice-card">
+    <view class="notice-title">请注意</view>
+    <view>清理微信缓存、删除小程序或更换设备后，本地数据可能丢失。当前版本不提供云端备份。</view>
+  </view>
+</view>

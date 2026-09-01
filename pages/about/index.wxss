@@ -1,0 +1,179 @@
+.about-page {
+  padding-top: 34rpx;
+}
+
+.brand-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 32rpx;
+}
+
+.brand-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 34rpx;
+}
+
+.brand-name {
+  margin-top: 24rpx;
+  color: #122129;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.brand-slogan {
+  margin-top: 8rpx;
+  color: #71807b;
+  font-size: 26rpx;
+}
+
+.version-pill {
+  margin-top: 22rpx;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  background: #eaf5f2;
+  color: #078c82;
+  font-size: 23rpx;
+}
+
+.copy-card {
+  padding: 28rpx;
+  color: #46544f;
+  font-size: 28rpx;
+  line-height: 1.75;
+}
+
+.copy-paragraph {
+  margin-top: 18rpx;
+}
+
+.promo-card {
+  overflow: hidden;
+}
+
+.promo-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 126rpx;
+  padding: 24rpx;
+  background: #ffffff;
+}
+
+.promo-row + .promo-row {
+  border-top: 1rpx solid #e3e9e6;
+}
+
+.promo-row--pressed {
+  background: #f1f6f4;
+}
+
+.promo-mark {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 72rpx;
+  height: 72rpx;
+  margin-right: 22rpx;
+  border-radius: 20rpx;
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.promo-mark--github {
+  background: #24292f;
+}
+
+.promo-mark--wechat {
+  background: #07c160;
+  font-size: 30rpx;
+}
+
+.promo-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.promo-title {
+  overflow: hidden;
+  color: #122129;
+  font-size: 29rpx;
+  font-weight: 600;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.promo-desc {
+  margin-top: 6rpx;
+  color: #71807b;
+  font-size: 24rpx;
+  line-height: 1.4;
+}
+
+.promo-action {
+  flex: 0 0 auto;
+  margin-left: 18rpx;
+  color: #078c82;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.official-account-card {
+  margin-top: 18rpx;
+  padding: 18rpx;
+}
+
+.official-account-card official-account {
+  display: block;
+  width: 100%;
+}
+
+.promo-hint {
+  margin-top: 14rpx;
+  padding: 0 8rpx;
+  color: #71807b;
+  font-size: 23rpx;
+  line-height: 1.55;
+}
+
+.link-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-height: 100rpx;
+  padding: 24rpx;
+  background: #ffffff;
+  color: #122129;
+  font-size: 29rpx;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.link-row + .link-row {
+  border-top: 1rpx solid #e3e9e6;
+}
+
+.link-row text {
+  flex: 1;
+}
+
+.link-row--pressed {
+  background: #f1f6f4;
+}
+
+.feedback-row {
+  border-radius: 0;
+}
+
+.filing-number {
+  padding: 52rpx 20rpx 8rpx;
+  color: #71807b;
+  font-size: 23rpx;
+  text-align: center;
+}

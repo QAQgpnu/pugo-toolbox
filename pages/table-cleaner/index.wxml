@@ -1,0 +1,63 @@
+<view class="table-cleaner-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">整</view>
+    <view>
+      <view class="heading-title">表格文本整理</view>
+      <view class="helper">粘贴表格文本，一键清洗、拆分、提取与脱敏</view>
+    </view>
+  </view>
+
+  <view class="surface input-card">
+    <view class="field-label">粘贴文本</view>
+    <textarea class="cleaner-input" value="{{input}}" placeholder="粘贴从 Excel、微信或网页复制的文本" placeholder-class="field-placeholder" maxlength="{{maxLength}}" auto-height="{{false}}" bindinput="onInput" />
+    <view class="input-foot">
+      <text class="input-counter {{tooLong ? 'input-counter--warn' : ''}}">{{inputChars}} / {{maxLength}} 字 · {{inputLines}} 行</text>
+      <text class="input-counter" wx:if="{{!input}}">支持最多 2 万字</text>
+    </view>
+  </view>
+
+  <view class="cleaner-groups">
+    <view class="cleaner-group" wx:for="{{groups}}" wx:key="name">
+      <view class="group-label">{{item.name}}</view>
+
+      <view class="columns-row" wx:if="{{item.name === '拆分与合并'}}">
+        <text class="columns-label">单列转多列的列数</text>
+        <input class="columns-input" type="number" value="{{columns}}" placeholder="如 3" placeholder-class="field-placeholder" bindinput="onColumnsInput" />
+      </view>
+
+      <view class="operation-list">
+        <view class="operation-cell" wx:for="{{item.operations}}" wx:for-item="operation" wx:key="id">
+          <view class="operation-chip" data-id="{{operation.id}}" bindtap="applyOperation" hover-class="chip-pressed">
+            <text class="operation-name">{{operation.name}}</text>
+            <text class="operation-hint">{{operation.hint}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="surface result-card" wx:if="{{hasResult}}">
+    <view class="result-head">
+      <view class="field-label">整理结果 · {{lastOperationName}}</view>
+      <view class="result-stats">
+        <text>{{inputLines}} 行 / {{inputChars}} 字</text>
+        <text class="result-arrow">→</text>
+        <text class="result-stats-strong">{{outputLines}} 行 / {{outputChars}} 字</text>
+      </view>
+    </view>
+    <view class="cleaner-output" user-select="{{true}}">{{output}}</view>
+    <view class="result-actions">
+      <button class="primary-button result-action" hover-class="button-pressed" bindtap="copyResult">复制结果</button>
+      <button class="outline-button result-action {{canUndo ? '' : 'result-action--disabled'}}" hover-class="button-pressed" bindtap="undoLast">撤销一步</button>
+      <button class="outline-button result-action" hover-class="button-pressed" bindtap="clearAll">清空</button>
+    </view>
+  </view>
+
+  <view class="surface empty-state" wx:else>
+    <view class="empty-mark">整</view>
+    <text>还没有整理结果</text>
+    <text class="helper">先在上方粘贴文本，再点选任意一个操作即可看到结果</text>
+  </view>
+
+  <view class="helper privacy-note">全程本机处理 · 不保存你粘贴的内容 · 不进入匿名统计 · 公式前缀默认按文本处理</view>
+</view>

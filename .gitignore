@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+node_modules/
+miniprogram_npm/
+project.private.config.json
+*.log
+.env
+.env.*
+coverage/
+dist/
+build/
+cloudfunctions/
+cloudbaserc.json

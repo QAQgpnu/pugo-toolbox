@@ -1,0 +1,13 @@
+@import "../../styles/tool-form.wxss";
+.roster { min-height: 260rpx; }
+.roster-count { margin-top: 12rpx; }
+.draw-button { margin-top: 24rpx; }
+.result-card { margin-top: 26rpx; padding: 34rpx; border-radius: 24rpx; background: #078c82; color: #fff; text-align: center; }
+.result-kicker { font-size: 24rpx; opacity: .84; }
+.result-name { margin-top: 8rpx; font-size: 54rpx; font-weight: 850; }
+.result-desc { margin-top: 8rpx; font-size: 23rpx; opacity: .82; }
+.section-head { display:flex; flex-direction:row; align-items:center; justify-content:space-between; }
+.clear-link { padding: 10rpx; background: transparent; color:#a66000; font-size:23rpx; }
+.stat-row { display:flex; flex-direction:row; justify-content:space-between; padding:20rpx 24rpx; }
+.stat-row + .stat-row { border-top:1rpx solid #e6ece9; }
+.stat-count { color:#078c82; font-weight:700; }

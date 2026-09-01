@@ -1,0 +1,60 @@
+<view class="page-shell text-page">
+  <view class="editor surface">
+    <textarea
+      class="text-input"
+      value="{{text}}"
+      maxlength="-1"
+      placeholder="粘贴或输入文本"
+      placeholder-class="text-placeholder"
+      bindinput="onTextInput"
+    />
+    <view class="stats-bar">
+      <view class="stat-item">
+        <text class="stat-value">{{characterCount}}</text>
+        <text class="stat-label">字</text>
+      </view>
+      <view class="stats-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{lineCount}}</text>
+        <text class="stat-label">行</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <button class="outline-button quick-button" bindtap="fillExample">填入示例</button>
+    <button class="outline-button quick-button" bindtap="copyResult">复制结果</button>
+    <button class="outline-button outline-button--danger quick-button" bindtap="clearText">清空</button>
+  </view>
+
+  <view class="section operation-section">
+    <view class="section-heading">
+      <view class="section-title operation-title">操作</view>
+      <text class="helper">可多选</text>
+    </view>
+    <view class="surface">
+      <view
+        class="operation-row {{item.selected ? 'operation-row--selected' : ''}}"
+        wx:for="{{operations}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="toggleOperation"
+        hover-class="operation-row--pressed"
+        aria-role="checkbox"
+        aria-checked="{{item.selected}}"
+      >
+        <view class="operation-symbol">{{item.symbol}}</view>
+        <view class="row-main">
+          <view class="row-title">{{item.name}}</view>
+          <view class="row-desc">{{item.description}}</view>
+        </view>
+        <view class="check-box">
+          <view class="check-mark"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button class="primary-button process-button" bindtap="runProcessing">处理文本</button>
+  <text class="helper process-helper">执行顺序：空格清理 → 去空行/去重 → 排序/提取链接 → 添加序号。结果会替换原文。</text>
+</view>

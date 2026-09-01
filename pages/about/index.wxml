@@ -1,0 +1,57 @@
+<view class="page-shell about-page">
+  <view class="brand-card surface">
+    <image class="brand-avatar" src="/assets/brand/pugo-toolbox-avatar-256.png" mode="aspectFill" />
+    <view class="brand-name">浦哥工具箱</view>
+    <view class="brand-slogan">把小事，三秒搞定</view>
+    <view class="version-pill">版本 {{version}}</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">产品说明</view>
+    <view class="surface copy-card">
+      <view>浦哥工具箱用底部中间“＋”收起 31 个日常工具，覆盖防健忘、生活试算、办公助手、效率、轻松一下和按需专区。首页只留下今天、常用与最近，打开更清爽。</view>
+      <view class="copy-paragraph">无需登录；工资试算、成分文本和图片不保存，普通记录默认只留在当前设备。真实驾照查询和未经授权的自动推送不会伪装成已实现。</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">关注浦哥</view>
+    <view class="surface promo-card">
+      <view class="promo-row" bindtap="copyGithubUrl" hover-class="promo-row--pressed">
+        <view class="promo-mark promo-mark--github">GH</view>
+        <view class="promo-copy">
+          <view class="promo-title">GitHub · {{githubUsername}}</view>
+          <view class="promo-desc">查看开源项目与开发记录</view>
+        </view>
+        <view class="promo-action">复制链接</view>
+      </view>
+      <view class="promo-row" bindtap="copyOfficialAccountName" hover-class="promo-row--pressed">
+        <view class="promo-mark promo-mark--wechat">微</view>
+        <view class="promo-copy">
+          <view class="promo-title">公众号 · {{officialAccountName}}</view>
+          <view class="promo-desc">工具心得、项目记录与随笔</view>
+        </view>
+        <view class="promo-action">复制名称</view>
+      </view>
+    </view>
+    <view wx:if="{{showOfficialAccountComponent}}" class="surface official-account-card">
+      <official-account bindload="onOfficialAccountLoad" binderror="onOfficialAccountError"></official-account>
+    </view>
+    <view class="promo-hint">{{officialAccountHint}}</view>
+  </view>
+
+  <view class="section">
+    <view class="surface">
+      <view class="link-row" bindtap="openPrivacy" hover-class="link-row--pressed">
+        <text>隐私与数据说明</text>
+        <view class="chevron"></view>
+      </view>
+      <button class="link-row feedback-row" open-type="feedback" hover-class="link-row--pressed">
+        <text>向开发者反馈问题</text>
+        <view class="chevron"></view>
+      </button>
+    </view>
+  </view>
+
+  <view wx:if="{{filingNumber}}" class="filing-number">备案号：{{filingNumber}}</view>
+</view>

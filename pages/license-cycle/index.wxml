@@ -1,0 +1,76 @@
+<view class="license-page page-shell">
+  <view class="feature-hero">
+    <view class="hero-mark">证</view>
+    <view class="hero-copy">
+      <view class="hero-title">记分周期助手</view>
+      <view class="hero-subtitle">按初领日期估算当前周期与剩余空间</view>
+    </view>
+  </view>
+
+  <view class="official-alert">
+    <view class="alert-mark">!</view>
+    <view class="alert-copy">
+      <view class="alert-title">这不是真实驾照分查询</view>
+      <view class="alert-desc">本页没有接入交管数据。已扣分需要你手动填写，实时记分和违法处理状态必须以“交管12123”为准。</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">估算当前记分周期</view>
+      <button class="example-button" bindtap="fillExample">填入示例</button>
+    </view>
+    <view class="surface form-panel">
+      <view class="field-block">
+        <view class="field-title">驾驶证初次领证日期</view>
+        <view class="field-help">在电子驾驶证或实体证主页查看</view>
+        <picker mode="date" value="{{initialDate}}" end="{{today}}" bindchange="onDateChange">
+          <view class="picker-shell {{initialDate ? '' : 'picker-shell--empty'}}"><text>{{initialDate || '请选择日期'}}</text><view class="picker-arrow"></view></view>
+        </picker>
+      </view>
+      <view class="field-block">
+        <view class="field-title">本周期已记分（手动填写）</view>
+        <view class="field-help">请先在交管12123核对，再把累计记分填到这里</view>
+        <view class="input-shell"><input class="number-input" type="number" value="{{deductedPoints}}" maxlength="2" placeholder="例如 3" bindinput="onPointsInput" /><text class="input-unit">分</text></view>
+      </view>
+      <button class="calculate-button" bindtap="calculate">计算周期</button>
+    </view>
+  </view>
+
+  <view class="result-wrap" wx:if="{{result}}">
+    <view class="score-card score-card--{{result.level}}">
+      <view class="score-main">
+        <view class="score-label">按手填数据估算剩余</view>
+        <view class="score-number">{{result.remainingPoints}}<text> 分</text></view>
+      </view>
+      <view class="score-side">
+        <view class="score-side-label">本周期已记</view>
+        <view class="score-side-value">{{result.deductedPoints}} 分</view>
+      </view>
+    </view>
+    <view class="period-card surface">
+      <view class="period-title">当前记分周期</view>
+      <view class="timeline-row">
+        <view class="timeline-point"></view>
+        <view class="timeline-copy"><view class="timeline-label">周期开始</view><view class="timeline-date">{{result.periodStart}}</view></view>
+      </view>
+      <view class="timeline-line"></view>
+      <view class="timeline-row">
+        <view class="timeline-point timeline-point--end"></view>
+        <view class="timeline-copy"><view class="timeline-label">周期结束</view><view class="timeline-date">{{result.periodEnd}}</view></view>
+      </view>
+      <view class="days-band">距离下一周期开始约 {{result.daysRemaining}} 天</view>
+      <view class="risk-copy">{{result.risk}}</view>
+    </view>
+    <view class="clear-rule">
+      <view class="clear-rule-title">周期结束不一定自动清零</view>
+      <view class="clear-rule-copy">记分周期为 12 个月，自初领证日期起连续计算。周期届满时未满 12 分且相关罚款已缴清，记分才会清除；未缴清罚款对应的记分会转入下一周期。</view>
+    </view>
+    <view class="action-row">
+      <button class="secondary-button" bindtap="clearAll">重新填写</button>
+      <button class="official-button" bindtap="showOfficialGuide">官方核验怎么找</button>
+    </view>
+  </view>
+
+  <view class="privacy-note">初领日期和记分只在当前页面参与计算，不保存、不上传，也不会代替交管部门通知。</view>
+</view>

@@ -1,0 +1,17 @@
+@import "../../styles/tool-form.wxss";
+.task-input { min-height:240rpx; }
+.task-helper { margin-top:12rpx; }
+.task-row { padding:22rpx 24rpx; }
+.task-row + .task-row { border-top:1rpx solid #e5ebe8; }
+.task-name { font-size:28rpx; font-weight:650; line-height:1.45; }
+.task-flags { display:flex; flex-direction:row; margin-top:14rpx; margin-right:-7rpx; margin-left:-7rpx; }
+.flag { min-height:58rpx; margin:0 7rpx; padding:12rpx 22rpx; border:1rpx solid #cad8d4; border-radius:999rpx; background:#fff; color:#65756f; font-size:23rpx; }
+.flag--active { border-color:#078c82; background:#e4f5f2; color:#06766e; font-weight:700; }
+.flag--urgent-active { border-color:#d47700; background:#fff0d7; color:#a65d00; font-weight:700; }
+.decide-button { margin-top:20rpx; }
+.focus-result { margin-top:28rpx; padding:34rpx 28rpx; border-radius:24rpx; background:#122129; color:#fff; text-align:center; }
+.result-kicker { color:#83d5cc; font-size:23rpx; font-weight:700; }
+.result-title { margin-top:14rpx; font-size:39rpx; font-weight:850; line-height:1.4; }
+.result-reason { margin-top:10rpx; color:#c1cbc8; font-size:24rpx; }
+.done-button { margin-top:24rpx; min-height:76rpx; padding:16rpx 24rpx; border-radius:18rpx; background:#078c82; color:#fff; font-weight:700; }
+.clear-all { margin:24rpx auto 0; padding:14rpx; background:transparent; color:#8a9692; font-size:23rpx; }
