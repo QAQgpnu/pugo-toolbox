@@ -1,0 +1,35 @@
+<view class="ent-page focus-page">
+  <view class="ent-title">努力长出来</view>
+  <view class="ent-subtitle">专注一次，长出一片叶</view>
+
+  <view class="mode-list">
+    <view class="focus-mode {{modeId === item.id ? 'focus-mode--active' : ''}}" wx:for="{{modes}}" wx:key="id" data-id="{{item.id}}" bindtap="selectMode">{{item.label}}</view>
+  </view>
+
+  <view class="focus-stage {{status === 'running' ? 'focus-stage--running' : ''}}">
+    <view class="focus-inner">
+      <view class="sprout">
+        <view class="stem"></view>
+        <view class="leaf leaf--left"></view>
+        <view class="leaf leaf--right"></view>
+        <view class="leaf leaf--extra-left" wx:if="{{leafCount >= 2}}"></view>
+        <view class="leaf leaf--extra-right" wx:if="{{leafCount >= 3}}"></view>
+        <view class="leaf leaf--top" wx:if="{{leafCount >= 4}}"></view>
+      </view>
+      <view class="focus-clock">{{clock}}</view>
+    </view>
+  </view>
+
+  <view class="focus-status">{{statusText}}</view>
+  <view class="focus-primary" bindtap="toggleFocus" hover-class="ent-pressed">{{primaryText}}</view>
+  <view class="focus-cancel" wx:if="{{status !== 'idle'}}" bindtap="cancelFocus">放弃这次</view>
+
+  <view class="focus-summary">今天 {{todayCount}} 次 · {{todayMinutes}} 分钟</view>
+  <view class="ent-surface garden">
+    <view class="garden-day" wx:for="{{week}}" wx:key="dateKey">
+      <view class="garden-plant garden-plant--{{item.level}}">{{item.plant}}</view>
+      <view>{{item.label}}</view>
+    </view>
+  </view>
+  <view class="ent-private">完成一个完整专注时段，才会为今天添一片叶；记录只保存在本机。</view>
+</view>

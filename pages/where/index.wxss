@@ -1,0 +1,3 @@
+@import "../../styles/tool-form.wxss";
+.form-submit { margin-top: 26rpx; }
+.search-input-card { width: 100%; height: 86rpx; margin-bottom: 18rpx; padding: 0 24rpx; border: 1rpx solid #d8e1de; border-radius: 20rpx; background: #fff; }

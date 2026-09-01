@@ -1,0 +1,110 @@
+<view class="excel-formulas-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">式</view>
+    <view>
+      <view class="heading-title">Excel公式助手</view>
+      <view class="helper">内置函数库与公式向导，全程本机，不联网、不上传</view>
+    </view>
+  </view>
+
+  <view class="surface wizard-card">
+    <view class="wizard-head">
+      <view class="wizard-title">公式向导</view>
+      <view class="helper">选一个场景，填空后生成公式和中文解释</view>
+    </view>
+    <view class="wizard-scenarios">
+      <view class="wizard-scenario-cell" wx:for="{{scenarios}}" wx:key="id">
+        <view class="wizard-scenario {{wizardScenarioId === item.id ? 'wizard-scenario--active' : ''}}" data-id="{{item.id}}" bindtap="selectScenario" hover-class="chip-pressed">
+          <view class="wizard-scenario-name">{{item.name}}</view>
+          <view class="wizard-scenario-desc">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="wizard-form" wx:if="{{wizardScenarioId}}">
+      <view class="wizard-field" wx:for="{{wizardFields}}" wx:key="key">
+        <view class="field-label">{{item.label}}</view>
+        <input class="wizard-input" value="{{wizardInputs[item.key]}}" placeholder="{{item.placeholder}}" placeholder-class="field-placeholder" data-key="{{item.key}}" bindinput="onWizardInput" />
+      </view>
+      <view class="wizard-actions">
+        <button class="outline-button wizard-action" bindtap="fillWizardExample">试试示例</button>
+        <button class="outline-button wizard-action" bindtap="clearWizard">清空</button>
+      </view>
+      <button class="primary-button wizard-generate" bindtap="generateWizard">生成公式</button>
+
+      <view class="wizard-result" wx:if="{{wizardResult}}">
+        <view class="result-label">生成结果</view>
+        <view class="wizard-formula-row">
+          <text class="wizard-formula" user-select="true">{{wizardResult.formula}}</text>
+          <view class="copy-chip" data-text="{{wizardResult.formula}}" bindtap="copyText">复制</view>
+        </view>
+        <view class="wizard-explain">{{wizardResult.explanation}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="surface search-card">
+    <input class="search-input" value="{{query}}" placeholder="搜索函数名或用途，如 VLOOKUP、求和" placeholder-class="field-placeholder" confirm-type="search" bindinput="onSearchInput" />
+    <view class="search-clear" wx:if="{{query}}" bindtap="clearSearch">×</view>
+  </view>
+
+  <scroll-view class="formula-category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="formula-category-strip">
+      <view class="formula-category-chip {{activeCategoryId === item.id ? 'formula-category-chip--active' : ''}}" wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="selectCategory">
+        <text>{{item.name}}</text>
+        <text class="formula-category-count">{{item.count}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="recent-formulas" wx:if="{{recentList.length}}">
+    <view class="recent-formulas-label">最近查看：</view>
+    <scroll-view class="recent-formulas-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="recent-formulas-strip">
+        <view class="recent-formula-chip" wx:for="{{recentList}}" wx:key="name" data-name="{{item.name}}" bindtap="openRecent">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="formula-list" wx:if="{{list.length}}">
+    <view class="surface formula-card" wx:for="{{list}}" wx:key="name">
+      <view class="formula-head" data-name="{{item.name}}" bindtap="toggleExpand" hover-class="formula-head--pressed">
+        <view class="formula-head-main">
+          <view class="formula-name">{{item.name}}</view>
+          <view class="formula-usage">{{item.usage}}</view>
+        </view>
+        <view class="formula-star {{item.isFavorite ? 'formula-star--active' : ''}}" data-name="{{item.name}}" catchtap="toggleFormulaFavorite">{{item.isFavorite ? '★' : '☆'}}</view>
+        <view class="chevron"></view>
+      </view>
+      <view class="formula-detail" wx:if="{{expandedName === item.name}}">
+        <view class="formula-block">
+          <view class="formula-block-label">基本语法</view>
+          <text class="formula-code" user-select="true">{{item.syntax}}</text>
+        </view>
+        <view class="formula-block">
+          <view class="formula-block-label">参数解释</view>
+          <view class="formula-plain">{{item.params}}</view>
+        </view>
+        <view class="formula-block">
+          <view class="formula-block-label">示例公式</view>
+          <view class="formula-example-row">
+            <text class="formula-code" user-select="true">{{item.example}}</text>
+            <view class="copy-chip" data-text="{{item.example}}" catchtap="copyText">复制</view>
+          </view>
+        </view>
+        <view class="formula-block">
+          <view class="formula-block-label">常见错误</view>
+          <view class="formula-plain formula-plain--warn">{{item.errors}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="surface empty-state" wx:else>
+    <view class="empty-mark">式</view>
+    <text>没找到相关函数</text>
+    <text class="helper">换个关键词，或切换到“全部”分类看看</text>
+  </view>
+
+  <view class="helper privacy-note">函数说明为内置离线资料，具体行为以你使用的 Excel / WPS 版本为准。</view>
+</view>

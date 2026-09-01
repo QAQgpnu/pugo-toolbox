@@ -1,0 +1,72 @@
+<view class="pet-page page-shell">
+  <view class="feature-hero">
+    <view class="hero-mark">宠</view>
+    <view class="hero-copy">
+      <view class="hero-title">宠物年龄换算</view>
+      <view class="hero-subtitle">不只换算“人类年龄”，也看看生命阶段</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">告诉我它多大</view>
+      <button class="example-button" bindtap="fillExample">试试示例</button>
+    </view>
+    <view class="surface form-panel">
+      <view class="type-selector">
+        <button class="type-button {{type === 'cat' ? 'type-button--active' : ''}}" data-type="cat" bindtap="selectType">
+          <view class="type-symbol">猫</view>
+          <view class="type-name">猫咪</view>
+        </button>
+        <button class="type-button type-button--last {{type === 'dog' ? 'type-button--active' : ''}}" data-type="dog" bindtap="selectType">
+          <view class="type-symbol">犬</view>
+          <view class="type-name">狗狗</view>
+        </button>
+      </view>
+
+      <view class="dog-size-block" wx:if="{{type === 'dog'}}">
+        <view class="field-title">狗狗体型</view>
+        <view class="size-row">
+          <button class="size-button {{dogSize === item.id ? 'size-button--active' : ''}}" wx:for="{{dogSizes}}" wx:key="id" data-size="{{item.id}}" bindtap="selectDogSize">{{item.name}}</button>
+        </view>
+        <view class="size-hint">{{dogSizeHint}}</view>
+      </view>
+
+      <view class="age-row">
+        <view class="age-field">
+          <view class="field-title">整岁</view>
+          <view class="input-shell"><input class="number-input" type="number" value="{{years}}" maxlength="2" placeholder="0" data-field="years" bindinput="onAgeInput" /><text class="input-unit">岁</text></view>
+        </view>
+        <view class="age-field age-field--last">
+          <view class="field-title">零头月数</view>
+          <view class="input-shell"><input class="number-input" type="number" value="{{months}}" maxlength="2" placeholder="0" data-field="months" bindinput="onAgeInput" /><text class="input-unit">个月</text></view>
+        </view>
+      </view>
+      <view class="age-help">至少填写 1 个月；月数请填 0–11。</view>
+      <button class="calculate-button" bindtap="calculate">看看它处于哪个阶段</button>
+    </view>
+  </view>
+
+  <view class="result-wrap" wx:if="{{result}}">
+    <view class="result-card">
+      <view class="result-top">
+        <view class="result-pet-mark">{{result.type === 'cat' ? '猫' : '犬'}}</view>
+        <view class="result-main">
+          <view class="result-label">{{result.typeName}}{{result.type === 'dog' ? ' · ' + result.dogSizeName : ''}}</view>
+          <view class="result-age">约等于人类 <text>{{result.humanAge}}</text> 岁</view>
+          <view class="result-original">实际年龄：{{result.petAgeText}}</view>
+        </view>
+      </view>
+      <view class="stage-band">
+        <view class="stage-title">{{result.stage.name}}</view>
+        <view class="stage-note">{{result.stage.note}}</view>
+      </view>
+    </view>
+    <button class="clear-result" bindtap="clearAll">换一个年龄</button>
+  </view>
+
+  <view class="method-note">
+    <view class="method-title">为什么不是简单乘以 7？</view>
+    <view class="method-copy">猫狗前两年成熟更快，之后不同体型犬的老化速度也不同。本页采用分阶段经验换算，只适合趣味理解和日常照护提示，不用于判断疾病或寿命。</view>
+  </view>
+</view>

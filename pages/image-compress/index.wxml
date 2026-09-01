@@ -1,0 +1,53 @@
+<view class="media-page page-shell">
+  <view class="media-hero">
+    <view class="media-mark">压</view>
+    <view class="media-hero-copy">
+      <view class="media-title">图片压缩</view>
+      <view class="media-subtitle">减小体积，图片只在你的手机里处理</view>
+    </view>
+  </view>
+
+  <view class="privacy-strip"><text class="privacy-dot"></text>不上传、不留历史；仅在你主动保存时写入相册</view>
+
+  <view class="media-surface choose-card {{processing ? 'choose-card--disabled' : ''}}" aria-disabled="{{processing}}" bindtap="chooseImage" hover-class="card-pressed">
+    <image class="source-preview" wx:if="{{sourcePath}}" src="{{sourcePath}}" mode="aspectFill" />
+    <view class="choose-placeholder" wx:else>
+      <view class="choose-plus">＋</view>
+      <view class="choose-title">选择一张图片</view>
+      <view class="choose-hint">从系统相册选择</view>
+    </view>
+    <view class="source-meta" wx:if="{{sourcePath}}">
+      <view><view class="meta-title">原图</view><view class="meta-copy">{{sourceDimensions}}</view></view>
+      <view class="meta-size">{{sourceSizeText}}</view>
+    </view>
+  </view>
+
+  <view class="media-surface options-card" wx:if="{{sourcePath}}">
+    <view class="option-label">压缩效果</view>
+    <view class="option-row">
+      <button wx:for="{{qualityPresets}}" wx:key="id" class="option-chip {{qualityId === item.id ? 'option-chip--active' : ''}}" disabled="{{processing}}" data-id="{{item.id}}" bindtap="selectQuality">{{item.label}}</button>
+    </view>
+    <view class="option-label option-label--spaced">最长边</view>
+    <view class="option-row">
+      <button wx:for="{{edgePresets}}" wx:key="*this" class="option-chip {{longEdge === item ? 'option-chip--active' : ''}}" disabled="{{processing}}" data-value="{{item}}" bindtap="selectEdge">{{item}} px</button>
+    </view>
+    <button class="media-primary" disabled="{{processing}}" bindtap="compress">{{processing ? '正在处理…' : '开始压缩'}}</button>
+  </view>
+
+  <view class="result-card" wx:if="{{outputPath}}">
+    <image class="result-preview" src="{{outputPath}}" mode="aspectFit" bindtap="previewOutput" />
+    <view class="result-head">
+      <view><view class="result-kicker">压缩完成</view><view class="result-dimensions">{{outputDimensions}}</view></view>
+      <view class="result-size">{{outputSizeText}}</view>
+    </view>
+    <view class="saving-badge" wx:if="{{savedPercent}}">体积减少约 {{savedPercent}}%</view>
+    <view class="saving-badge saving-badge--neutral" wx:else>原图已经很精简，可改用“更省空间”再试</view>
+    <view class="result-actions">
+      <button class="secondary-action" disabled="{{processing}}" bindtap="previewOutput">查看大图</button>
+      <button class="primary-action" disabled="{{processing}}" bindtap="saveOutput">保存到相册</button>
+    </view>
+  </view>
+
+  <view class="media-note">提示：输出统一为 JPG。透明图片会以画布底色导出；超大长图会按所选最长边缩小，以降低部分安卓与鸿蒙设备的内存压力。</view>
+  <canvas class="processor-canvas" canvas-id="compressCanvas" width="{{canvasWidth}}" height="{{canvasHeight}}" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+</view>

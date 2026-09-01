@@ -1,0 +1,63 @@
+<view class="drawer-layer" wx:if="{{drawerOpen}}">
+  <view class="drawer-mask" bindtap="closeDrawer" catchtouchmove="preventMove"></view>
+  <view class="tool-drawer" catchtap="stopPropagation">
+    <view class="drawer-handle"></view>
+    <view class="drawer-head">
+      <view>
+        <view class="drawer-title">选择一个工具</view>
+        <view class="drawer-subtitle">搜索，或按分类快速找到</view>
+      </view>
+      <view class="drawer-close" role="button" aria-label="关闭工具面板" bindtap="closeDrawer">×</view>
+    </view>
+
+    <view class="drawer-search">
+      <view class="drawer-search-icon"></view>
+      <input class="drawer-search-input" value="{{query}}" placeholder="搜索工具名称或用途" placeholder-class="drawer-search-placeholder" confirm-type="search" bindinput="onSearchInput" />
+      <view class="drawer-search-clear" wx:if="{{query}}" role="button" aria-label="清空搜索" bindtap="clearSearch">×</view>
+    </view>
+
+    <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="category-strip">
+        <view class="category-chip {{activeCategoryId === item.id ? 'category-chip--active' : ''}}" wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="selectCategory">
+          <text>{{item.name}}</text>
+          <text class="category-chip-count">{{item.count}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <scroll-view class="tool-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="drawer-tool-grid" wx:if="{{visibleTools.length}}">
+        <view class="drawer-tool-cell" wx:for="{{visibleTools}}" wx:key="id">
+          <view class="drawer-tool-entry" data-id="{{item.id}}" bindtap="openTool" hover-class="drawer-tool-entry--pressed">
+            <view class="drawer-favorite {{item.isFavorite ? 'drawer-favorite--active' : ''}}" role="button" aria-label="收藏{{item.name}}" data-id="{{item.id}}" catchtap="toggleFavorite">☆</view>
+            <view class="drawer-tool-symbol drawer-tool-symbol--{{item.category}}">{{item.symbol}}</view>
+            <view class="drawer-tool-name">{{item.name}}</view>
+            <view class="drawer-tool-desc">{{item.description}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="drawer-empty" wx:else>
+        <view class="drawer-empty-mark">0</view>
+        <view class="drawer-empty-title">没有找到相关工具</view>
+        <view class="drawer-empty-desc">换个关键词，或选择“全部”试试</view>
+      </view>
+    </scroll-view>
+
+    <view class="drawer-privacy">工具输入和结果默认只在本机处理</view>
+  </view>
+</view>
+
+<view class="bottom-nav">
+  <view class="nav-item {{current === 'home' ? 'nav-item--active' : ''}}" data-page="home" bindtap="onNavigate">
+    <view class="home-icon"></view>
+    <text class="nav-label">首页</text>
+  </view>
+  <view class="nav-item nav-item--create" bindtap="openDrawer">
+    <view class="create-button"><text class="create-symbol">＋</text></view>
+    <text class="create-label">工具</text>
+  </view>
+  <view class="nav-item {{current === 'settings' ? 'nav-item--active' : ''}}" data-page="settings" bindtap="onNavigate">
+    <view class="settings-icon"><view class="settings-core"></view></view>
+    <text class="nav-label">设置</text>
+  </view>
+</view>

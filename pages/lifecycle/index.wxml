@@ -1,0 +1,14 @@
+<view class="page-shell">
+  <view class="tool-intro"><view class="tool-intro-kicker">防健忘 · 周期管理</view><view class="tool-intro-title">换过一次，自动算下次</view><view class="tool-intro-desc">适合牙刷、滤芯、电池、清洗和日常耗材。到期后点“今天处理了”即可进入下一周期。</view></view>
+  <view class="section"><view class="section-title-row"><view class="section-title">建立更换周期</view><button class="example-chip" bindtap="fillExample" hover-class="example-chip--pressed">试试示例</button></view><view class="surface form-card">
+    <view class="field"><view class="field-label">用品或事项</view><input class="field-input" value="{{name}}" maxlength="40" placeholder="例如：净水器滤芯" placeholder-class="field-placeholder" bindinput="onNameInput" /></view>
+    <view class="field"><view class="field-label">上次处理日期</view><picker mode="date" value="{{lastDate}}" bindchange="onDateChange"><view class="field-picker">{{lastDate}}</view></picker></view>
+    <view class="field"><view class="field-label">多少天一次</view><input class="field-input" type="number" value="{{intervalDays}}" maxlength="4" bindinput="onIntervalInput" /><view class="chip-row preset-row"><view class="choice-chip {{intervalDays == item ? 'choice-chip--active' : ''}}" wx:for="{{presets}}" wx:key="*this" data-days="{{item}}" bindtap="choosePreset">{{item}} 天</view></view></view>
+    <button class="primary-button form-submit" bindtap="addRecord">建立周期</button>
+  </view></view>
+  <view class="section"><view class="section-title">我的周期</view>
+    <view wx:if="{{decorated.length}}"><view class="surface record-card" wx:for="{{decorated}}" wx:key="id"><view class="record-head"><view class="record-main"><view class="record-title">{{item.name}}<text class="record-tag {{item.tone == 'danger' ? 'record-tag--danger' : item.tone == 'warning' ? 'record-tag--warning' : ''}}">{{item.text}}</text></view><view class="record-desc">下次日期：{{item.nextDate}}</view><view class="record-meta">每 {{item.intervalDays}} 天 · 上次 {{item.lastDate}}</view></view><button class="text-action" data-id="{{item.id}}" catchtap="removeRecord">删除</button></view><button class="inline-action" data-id="{{item.id}}" bindtap="markDone">今天处理了，计算下一次</button></view></view>
+    <view class="surface empty-state" wx:else><view class="empty-mark">换</view><text>添加一个需要定期更换的东西</text></view>
+  </view>
+  <view class="notice">这里只做日期记录，不提供医疗、安全或产品寿命判断；请以用品说明和专业建议为准。</view>
+</view>

@@ -1,0 +1,277 @@
+.fund-page {
+  padding-top: 42rpx;
+  padding-bottom: 72rpx;
+}
+
+.feature-hero,
+.section-head,
+.double-row,
+.input-shell,
+.split-result,
+.detail-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.feature-hero {
+  align-items: center;
+}
+
+.hero-mark {
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 22rpx;
+  border-radius: 25rpx;
+  background: #0b8f82;
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: 850;
+  box-shadow: 0 12rpx 26rpx rgba(11, 143, 130, 0.2);
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-title {
+  color: #122129;
+  font-size: 39rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  margin-top: 7rpx;
+  color: #71807b;
+  font-size: 23rpx;
+  line-height: 1.45;
+}
+
+.privacy-note {
+  margin-top: 28rpx;
+  padding: 18rpx 21rpx;
+  border-left: 6rpx solid #0b8f82;
+  border-radius: 8rpx 18rpx 18rpx 8rpx;
+  background: #eaf7f5;
+  color: #4c6e68;
+  font-size: 22rpx;
+  line-height: 1.55;
+}
+
+.section-head {
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.section-head .section-title {
+  margin-bottom: 0;
+}
+
+.example-button {
+  min-height: 60rpx;
+  padding: 12rpx 20rpx;
+  border: 1rpx solid #9bcfc8;
+  border-radius: 999rpx;
+  background: #ffffff;
+  color: #087b72;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.form-panel {
+  padding: 25rpx;
+}
+
+.field-block + .double-row,
+.double-row + .optional-band {
+  margin-top: 22rpx;
+}
+
+.field-label {
+  margin-bottom: 10rpx;
+  color: #41514c;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.input-shell {
+  align-items: center;
+  width: 100%;
+  min-height: 86rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid #d5dfdc;
+  border-radius: 18rpx;
+  background: #f9fbfa;
+}
+
+.number-input {
+  flex: 1;
+  min-width: 0;
+  height: 82rpx;
+  color: #17251f;
+  font-size: 28rpx;
+}
+
+.input-unit {
+  flex: none;
+  margin-left: 9rpx;
+  color: #6f7d78;
+  font-size: 23rpx;
+}
+
+.half-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.half-field--last {
+  margin-left: 16rpx;
+}
+
+.optional-band {
+  margin-bottom: 18rpx;
+  padding: 14rpx 17rpx;
+  border-radius: 14rpx;
+  background: #f2f5f3;
+  color: #71807b;
+  font-size: 20rpx;
+  line-height: 1.5;
+}
+
+.calculate-button {
+  min-height: 92rpx;
+  margin-top: 26rpx;
+  border-radius: 21rpx;
+  background: #078c82;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 800;
+  box-shadow: 0 12rpx 26rpx rgba(7, 140, 130, 0.16);
+}
+
+.result-section {
+  margin-top: 30rpx;
+}
+
+.result-primary {
+  padding: 30rpx 28rpx;
+  border-radius: 27rpx 27rpx 0 0;
+  background: #0a847a;
+  color: #ffffff;
+  text-align: center;
+}
+
+.result-primary-label {
+  font-size: 23rpx;
+  opacity: 0.86;
+}
+
+.result-primary-number {
+  margin-top: 8rpx;
+  font-size: 48rpx;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.result-primary-caption {
+  margin-top: 9rpx;
+  font-size: 20rpx;
+  opacity: 0.72;
+}
+
+.split-result {
+  align-items: stretch;
+  padding: 22rpx 12rpx;
+  border-right: 1rpx solid #dce5e2;
+  border-left: 1rpx solid #dce5e2;
+  background: #ffffff;
+}
+
+.split-item {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.split-label {
+  color: #71807b;
+  font-size: 21rpx;
+}
+
+.split-value {
+  margin-top: 6rpx;
+  color: #116e66;
+  font-size: 29rpx;
+  font-weight: 800;
+}
+
+.split-divider {
+  width: 1rpx;
+  margin: 2rpx 8rpx;
+  background: #e1e7e5;
+}
+
+.detail-list {
+  border-radius: 0 0 25rpx 25rpx;
+}
+
+.detail-row {
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82rpx;
+  padding: 18rpx 22rpx;
+  color: #596963;
+  font-size: 23rpx;
+}
+
+.detail-row + .detail-row {
+  border-top: 1rpx solid #edf1ef;
+}
+
+.detail-row--accent {
+  background: #f0faf8;
+  color: #176d65;
+}
+
+.detail-value {
+  margin-left: 18rpx;
+  color: #24332e;
+  font-weight: 800;
+}
+
+.clear-result {
+  min-height: 68rpx;
+  margin-top: 14rpx;
+  background: transparent;
+  color: #168077;
+  font-size: 23rpx;
+  font-weight: 700;
+}
+
+.rules-note {
+  margin-top: 30rpx;
+  padding: 22rpx;
+  border-radius: 20rpx;
+  background: #f0f4f2;
+}
+
+.rules-title {
+  color: #40514b;
+  font-size: 23rpx;
+  font-weight: 800;
+}
+
+.rules-copy {
+  margin-top: 8rpx;
+  color: #6d7b76;
+  font-size: 21rpx;
+  line-height: 1.65;
+}

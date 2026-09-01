@@ -1,0 +1,7 @@
+<view class="page-shell">
+  <view class="tool-intro"><view class="tool-intro-kicker">效率处理 · 有记忆的选择</view><view class="tool-intro-title">轮到谁，既随机也更公平</view><view class="tool-intro-desc">适合家务、值日、点名和轮班。优先从历史次数更少的人中选择，并尽量避免连续选中同一人。</view></view>
+  <view class="section"><view class="section-title-row"><view class="section-title">参与名单</view><button class="example-chip" bindtap="fillExample" hover-class="example-chip--pressed">试试示例</button></view><view class="surface form-card"><textarea class="field-textarea roster" value="{{participantsText}}" maxlength="500" placeholder="{{participantsPlaceholder}}" placeholder-class="field-placeholder" bindinput="onParticipantsInput" /><view class="helper roster-count">已识别 {{count}} 人，重复名字会自动去除</view><button class="primary-button draw-button" disabled="{{!canDraw}}" bindtap="draw">公平选一个</button></view></view>
+  <view class="result-card" wx:if="{{result}}"><view class="result-kicker">这次轮到</view><view class="result-name">{{result}}</view><view class="result-desc">结果已计入历史，下次会继续平衡次数</view></view>
+  <view class="section" wx:if="{{stats.length}}"><view class="section-head"><view class="section-title">当前轮值次数</view><button class="clear-link" bindtap="clearHistory">重新归零</button></view><view class="surface"><view class="stat-row" wx:for="{{stats}}" wx:key="name"><text>{{item.name}}</text><text class="stat-count">{{item.count}} 次</text></view></view></view>
+  <view class="notice">公平指“优先照顾历史次数较少的人”，不代表严格排班。名单和历史只保存在当前设备。</view>
+</view>

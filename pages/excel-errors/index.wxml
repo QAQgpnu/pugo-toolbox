@@ -1,0 +1,71 @@
+<view class="excel-errors-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">诊</view>
+    <view>
+      <view class="heading-title">Excel报错诊断</view>
+      <view class="helper">常见报错与异常现象，按步骤排查修复，全程本机</view>
+    </view>
+  </view>
+
+  <view class="surface search-card">
+    <input class="search-input" value="{{query}}" placeholder="搜索报错或现象，如 #REF!、查不到" placeholder-class="field-placeholder" confirm-type="search" bindinput="onSearchInput" />
+    <view class="search-clear" wx:if="{{query}}" bindtap="clearSearch">×</view>
+  </view>
+
+  <scroll-view class="error-category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="error-category-strip">
+      <view class="error-category-chip {{activeCategoryId === item.id ? 'error-category-chip--active' : ''}}" wx:for="{{categories}}" wx:key="id" data-id="{{item.id}}" bindtap="selectCategory">
+        <text>{{item.name}}</text>
+        <text class="error-category-count">{{item.count}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="error-list" wx:if="{{list.length}}">
+    <view class="surface error-card" wx:for="{{list}}" wx:key="id">
+      <view class="error-head" data-id="{{item.id}}" bindtap="toggleExpand" hover-class="error-head--pressed">
+        <view class="error-code {{item.isCode ? 'error-code--red' : 'error-code--amber'}}">{{item.code}}</view>
+        <view class="error-head-main">
+          <view class="error-title">{{item.title}}</view>
+          <view class="error-summary">{{item.summary}}</view>
+        </view>
+        <view class="chevron"></view>
+      </view>
+
+      <view class="error-detail" wx:if="{{expandedId === item.id}}">
+        <view class="error-sample">{{item.sample}}</view>
+
+        <view class="error-block">
+          <view class="error-block-label">常见原因</view>
+          <view class="error-item" wx:for="{{item.causes}}" wx:for-item="cause" wx:key="*this">· {{cause}}</view>
+        </view>
+
+        <view class="error-block">
+          <view class="error-block-label">排查步骤</view>
+          <view class="error-item error-item--step" wx:for="{{item.steps}}" wx:for-item="step" wx:key="*this">
+            <text class="error-step-index">{{index + 1}}.</text>
+            <text class="error-step-text">{{step}}</text>
+          </view>
+        </view>
+
+        <view class="error-block">
+          <view class="error-block-label">修复示例</view>
+          <text class="error-fix" user-select="true">{{item.fixExample}}</text>
+        </view>
+
+        <view class="error-block">
+          <view class="error-block-label">容易犯的错误</view>
+          <view class="error-item error-item--warn" wx:for="{{item.pitfalls}}" wx:for-item="pitfall" wx:key="*this">· {{pitfall}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="surface empty-state" wx:else>
+    <view class="empty-mark">诊</view>
+    <text>没有找到匹配的问题</text>
+    <text class="helper">试试直接搜报错代码，如 VALUE、REF，或切到“全部”</text>
+  </view>
+
+  <view class="helper privacy-note">排查建议为通用经验，重要数据请先备份再操作。</view>
+</view>

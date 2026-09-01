@@ -1,0 +1,11 @@
+{
+  "name": "pugo-toolbox",
+  "version": "1.4.0",
+  "private": false,
+  "description": "Privacy-first native WeChat Mini Program｜31 个本地优先实用工具",
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "preflight": "node tests/release-preflight.js"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,29 @@
+@import "../../styles/entertainment.wxss";
+
+.example-link { margin-top: 22rpx; color: #078c82; font-size: 23rpx; font-weight: 700; text-align: right; }
+.value-form { margin-top: 18rpx; padding: 10rpx 24rpx 24rpx; }
+.value-field { min-height: 112rpx; padding: 20rpx 0 15rpx; }
+.value-field + .value-field { border-top: 1rpx solid #edf1ef; }
+.value-label { color: #71807b; font-size: 22rpx; }
+.value-input { height: 54rpx; margin-top: 4rpx; color: #122129; font-size: 29rpx; font-weight: 650; }
+.price-line { display: flex; flex-direction:row; align-items: center; min-height: 54rpx; color: #122129; font-size: 27rpx; font-weight: 650; }
+.price-input { flex: 1; margin-left: 12rpx; }
+.per-day { color: #71807b; font-size: 23rpx; font-weight: 500; }
+.date-picker { display: flex; flex-direction:row; align-items: center; justify-content: space-between; min-height: 52rpx; margin-top: 4rpx; font-size: 29rpx; font-weight: 650; }
+.date-picker--empty { color: #9aa5a1; font-weight: 500; }
+.value-button { margin-top: 16rpx; }
+.value-result { margin-top: 22rpx; padding: 28rpx; border: 1rpx solid #c8e5e0; border-radius: 28rpx; background: linear-gradient(145deg, #e8f7f4, #f6fcfa); }
+.result-label { color: #078c82; font-size: 23rpx; font-weight: 750; }
+.result-number { margin-top: 10rpx; color: #122129; font-size: 64rpx; font-weight: 850; letter-spacing: -2rpx; }
+.result-number > text:first-child { margin-right: 4rpx; font-size: 38rpx; }
+.result-unit { margin-left: 8rpx; font-size: 25rpx; letter-spacing: 0; }
+.result-copy { margin-top: 8rpx; color: #71807b; font-size: 23rpx; }
+.result-copy--done { color: #078c82; font-weight: 700; }
+.result-track { height: 12rpx; margin-top: 24rpx; overflow: hidden; border-radius: 10rpx; background: #d9e8e5; }
+.result-track-fill { height: 100%; border-radius: 10rpx; background: #078c82; }
+.record-list { margin-top: 16rpx; overflow: hidden; }
+.record-row { display: flex; flex-direction:row; align-items: center; justify-content: space-between; min-height: 104rpx; padding: 18rpx 24rpx; }
+.record-row + .record-row { border-top: 1rpx solid #edf1ef; }
+.record-name { font-size: 27rpx; font-weight: 700; }
+.record-date { margin-top: 5rpx; color: #8a9692; font-size: 20rpx; }
+.record-value { color: #078c82; font-size: 24rpx; font-weight: 750; }

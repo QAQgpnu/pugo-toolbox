@@ -1,0 +1,44 @@
+<view class="cos-page page-shell">
+  <view class="cos-hero"><view class="cos-mark">成</view><view class="cos-copy"><view class="cos-title">化妆品成分对比</view><view class="cos-subtitle">共同成分、各自特点，一眼看清</view></view></view>
+  <view class="science-note"><view class="science-title">先拍成分表，再校对和比较</view><view class="science-copy">本机 OCR 可能受反光、小字和包装弯曲影响，识别后请先校对。配方是否适合你还与浓度、用法和个人耐受有关。</view></view>
+  <view class="ocr-status {{ocrReady ? 'ocr-status--ready' : ''}}">{{ocrReady ? '本机文字识别已就绪，照片不会上传' : ocrSupported ? '正在准备本机文字识别，仍可手动输入' : '当前设备不支持本机文字识别，请手动输入'}}</view>
+  <view class="example-row"><button class="example-button" disabled="{{ocrProcessing}}" bindtap="fillExample">填入示例</button><button class="clear-button" disabled="{{ocrProcessing}}" bindtap="clearAll">清空</button></view>
+
+  <view class="input-card input-card--a">
+    <view class="input-head"><view class="input-badge">A</view><view class="input-heading"><view class="input-title">第一款产品</view><view class="input-help">拍摄包装背面的完整成分区域</view></view><button class="ocr-button" data-side="left" disabled="{{!ocrReady || ocrProcessing}}" bindtap="chooseIngredientImage">{{ocrProcessing && ocrSide === 'left' ? '识别中' : '拍照/相册'}}</button></view>
+    <textarea class="ingredient-input" maxlength="4000" value="{{leftText}}" disabled="{{ocrProcessing}}" placeholder="例如：水、甘油、烟酰胺…" bindinput="onLeftInput" />
+    <view class="input-count">{{leftText.length}} / 4000</view>
+  </view>
+  <view class="input-card input-card--b">
+    <view class="input-head"><view class="input-badge input-badge--b">B</view><view class="input-heading"><view class="input-title">第二款产品</view><view class="input-help">中文或 INCI 英文名都可以</view></view><button class="ocr-button ocr-button--b" data-side="right" disabled="{{!ocrReady || ocrProcessing}}" bindtap="chooseIngredientImage">{{ocrProcessing && ocrSide === 'right' ? '识别中' : '拍照/相册'}}</button></view>
+    <textarea class="ingredient-input" maxlength="4000" value="{{rightText}}" disabled="{{ocrProcessing}}" placeholder="例如：Aqua, Glycerin, Squalane…" bindinput="onRightInput" />
+    <view class="input-count">{{rightText.length}} / 4000</view>
+  </view>
+  <button class="compare-button" disabled="{{ocrProcessing}}" bindtap="compare">开始对比</button>
+
+  <view class="result-wrap" wx:if="{{result}}">
+    <view class="result-summary">
+      <view class="summary-item"><view class="summary-number">{{result.common.length}}</view><view class="summary-label">共同成分</view></view>
+      <view class="summary-divider"></view>
+      <view class="summary-item"><view class="summary-number">{{result.onlyLeft.length}}</view><view class="summary-label">仅 A 有</view></view>
+      <view class="summary-divider"></view>
+      <view class="summary-item"><view class="summary-number">{{result.onlyRight.length}}</view><view class="summary-label">仅 B 有</view></view>
+    </view>
+    <view class="unknown-tip" wx:if="{{result.unknownCount}}">有 {{result.unknownCount}} 个名称本地词典暂未收录，会原样展示供你核对。</view>
+    <view class="tab-row">
+      <button class="tab-button {{activeTab === 'common' ? 'tab-button--active' : ''}}" data-tab="common" bindtap="selectTab">共同</button>
+      <button class="tab-button {{activeTab === 'left' ? 'tab-button--active-a' : ''}}" data-tab="left" bindtap="selectTab">仅 A</button>
+      <button class="tab-button {{activeTab === 'right' ? 'tab-button--active-b' : ''}}" data-tab="right" bindtap="selectTab">仅 B</button>
+    </view>
+    <view class="ingredient-list" wx:if="{{currentItems.length}}">
+      <view class="ingredient-row" wx:for="{{currentItems}}" wx:key="key" data-key="{{item.key}}" bindtap="toggleIngredient">
+        <view class="ingredient-main"><view class="ingredient-name">{{item.name}}</view><view class="ingredient-category">{{item.category}}{{item.known ? '' : ' · 未收录'}}</view><view class="ingredient-note" wx:if="{{expandedKey === item.key}}">{{item.note}}</view></view>
+        <view class="row-arrow {{expandedKey === item.key ? 'row-arrow--open' : ''}}"></view>
+      </view>
+    </view>
+    <view class="empty-result" wx:else>这个分组暂时没有成分</view>
+  </view>
+
+  <view class="source-note">OCR 和成分对比均在本机完成，照片与文字不会保存到工具历史或上传。科普词典只解释常见用途，不替代产品说明、监管结论或专业医疗建议。</view>
+  <canvas class="ocr-canvas" type="webgl" id="ocrCanvas"></canvas>
+</view>

@@ -1,0 +1,28 @@
+{
+  "description": "浦哥工具箱 1.4.0：31 个本地优先的微信小程序实用工具",
+  "packOptions": {
+    "ignore": [
+      { "type": "folder", "value": "docs" },
+      { "type": "folder", "value": "tests" },
+      { "type": "file", "value": "package.json" },
+      { "type": "file", "value": "LICENSE" },
+      { "type": "file", "value": "CHANGELOG.md" },
+      { "type": "file", "value": "CONTRIBUTING.md" },
+      { "type": "file", "value": "SECURITY.md" }
+    ]
+  },
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true,
+    "checkSiteMap": true,
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "pugo-toolbox-1.4.0",
+  "miniprogramRoot": "./",
+  "condition": {}
+}

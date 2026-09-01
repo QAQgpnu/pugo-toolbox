@@ -1,0 +1,78 @@
+<view class="convert-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">换</view>
+    <view>
+      <view class="heading-title">单位换算</view>
+      <view class="helper">输入数值，结果会实时更新</view>
+    </view>
+  </view>
+
+  <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="false">
+    <view class="category-tabs" role="tablist">
+      <button
+        wx:for="{{categoryTabs}}"
+        wx:key="id"
+        class="category-tab {{currentCategory === item.id ? 'category-tab--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onCategoryTap"
+      >{{item.label}}</button>
+    </view>
+  </scroll-view>
+
+  <view class="surface converter-panel">
+    <view class="field-label">要换算的数值</view>
+    <view class="number-field">
+      <input
+        class="number-input"
+        type="digit"
+        value="{{inputValue}}"
+        placeholder="例如：12.5"
+        placeholder-class="input-placeholder"
+        bindinput="onValueInput"
+      />
+      <text class="input-symbol">{{units[fromIndex].symbol}}</text>
+    </view>
+
+    <view class="unit-row">
+      <view class="unit-picker-wrap">
+        <view class="unit-caption">从</view>
+        <picker range="{{units}}" range-key="label" value="{{fromIndex}}" bindchange="onFromChange">
+          <view class="unit-picker">
+            <view>
+              <view class="unit-name">{{units[fromIndex].label}}</view>
+              <view class="unit-symbol">{{units[fromIndex].symbol}}</view>
+            </view>
+            <view class="picker-arrow"></view>
+          </view>
+        </picker>
+      </view>
+
+      <button class="swap-button" aria-label="交换单位" bindtap="swapUnits">互换</button>
+
+      <view class="unit-picker-wrap">
+        <view class="unit-caption">到</view>
+        <picker range="{{units}}" range-key="label" value="{{toIndex}}" bindchange="onToChange">
+          <view class="unit-picker">
+            <view>
+              <view class="unit-name">{{units[toIndex].label}}</view>
+              <view class="unit-symbol">{{units[toIndex].symbol}}</view>
+            </view>
+            <view class="picker-arrow"></view>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="result-card {{result ? 'result-card--ready' : ''}}">
+    <view class="result-label">换算结果</view>
+    <view class="result-value" wx:if="{{result}}">
+      <text class="result-number">{{result}}</text>
+      <text class="result-symbol">{{units[toIndex].symbol}}</text>
+    </view>
+    <view class="result-placeholder" wx:else>等待输入…</view>
+  </view>
+
+  <button class="primary-button copy-button" disabled="{{!result}}" bindtap="copyResult">复制结果</button>
+  <view class="precision-note">覆盖长度、重量、面积、体积、速度、时间、数据容量和温度；数据容量按 1 KB = 1024 B 计算。</view>
+</view>

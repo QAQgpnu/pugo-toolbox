@@ -1,0 +1,77 @@
+.ent-page {
+  min-height: 100vh;
+  padding: 32rpx 28rpx calc(64rpx + env(safe-area-inset-bottom));
+}
+
+.ent-title {
+  color: #122129;
+  font-size: 48rpx;
+  font-weight: 800;
+  line-height: 1.24;
+}
+
+.ent-subtitle {
+  margin-top: 8rpx;
+  color: #71807b;
+  font-size: 25rpx;
+  line-height: 1.5;
+}
+
+.ent-surface {
+  border: 1rpx solid #dce3e0;
+  border-radius: 28rpx;
+  background: #ffffff;
+  box-shadow: 0 12rpx 32rpx rgba(18, 33, 41, 0.05);
+}
+
+.ent-stats {
+  display: flex;
+  flex-direction: row;
+  margin-top: 28rpx;
+  margin-right: -8rpx;
+  margin-left: -8rpx;
+}
+
+.ent-stat {
+  flex: 1;
+  margin: 0 8rpx;
+  padding: 22rpx 24rpx;
+}
+
+.ent-stat-label {
+  color: #71807b;
+  font-size: 22rpx;
+}
+
+.ent-stat-value {
+  margin-top: 6rpx;
+  color: #122129;
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.ent-section-title {
+  margin-top: 34rpx;
+  font-size: 28rpx;
+  font-weight: 750;
+}
+
+.ent-private {
+  margin-top: 20rpx;
+  color: #8a9692;
+  font-size: 21rpx;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.ent-pressed {
+  opacity: 0.8;
+  transform: scale(0.975);
+}
+
+.ent-danger-link {
+  margin-top: 22rpx;
+  color: #9b6d48;
+  font-size: 23rpx;
+  text-align: center;
+}

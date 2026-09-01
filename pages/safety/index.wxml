@@ -1,0 +1,106 @@
+<view class="safety-page page-shell">
+  <view class="safety-hero">
+    <view class="hero-mark">安</view>
+    <view class="hero-copy">
+      <view class="hero-title">安心自查</view>
+      <view class="helper">出门、睡前，逐项确认更放心</view>
+    </view>
+    <view class="week-badge">本周 {{weeklyCount}} 次</view>
+  </view>
+
+  <view class="draft-alert" wx:if="{{draft}}" bindtap="resumeDraft">
+    <view class="draft-status">未完成</view>
+    <view class="draft-main">
+      <view class="draft-title">继续“{{draft.listName}}”</view>
+      <view class="draft-desc">已确认 {{draftProgress.checked}} / {{draftProgress.total}} 项</view>
+    </view>
+    <view class="draft-action">继续</view>
+  </view>
+
+  <view class="section-head list-heading">
+    <view>
+      <view class="section-title">选择检查场景</view>
+      <view class="helper">建议按现场情况调整项目，再开始本次自查</view>
+    </view>
+    <button class="small-outline" bindtap="toggleCreate">{{showCreate ? '收起' : '新建清单'}}</button>
+  </view>
+
+  <view class="surface create-card" wx:if="{{showCreate}}">
+    <view class="create-title">创建我的清单</view>
+    <input class="form-input" maxlength="16" value="{{newListName}}" placeholder="清单名称，例如：下班前检查" bindinput="onNewListName" />
+    <input class="form-input form-input--last" maxlength="32" value="{{newListFirstItem}}" placeholder="第一个检查项目" bindinput="onNewListFirstItem" />
+    <button class="primary-button create-button" bindtap="createList">创建并继续添加</button>
+  </view>
+
+  <view class="scene-list">
+    <view class="scene-card" wx:for="{{lists}}" wx:key="id">
+      <view class="scene-top">
+        <view class="scene-symbol">{{item.symbol}}</view>
+        <view class="scene-main">
+          <view class="scene-name">{{item.name}}</view>
+          <view class="scene-desc">{{item.description}}</view>
+          <view class="scene-meta">{{item.itemCount}} 项检查<text wx:if="{{item.criticalCount}}"> · {{item.criticalCount}} 项重点</text></view>
+        </view>
+      </view>
+      <view class="scene-actions">
+        <button class="manage-button" data-id="{{item.id}}" bindtap="openManage">管理项目</button>
+        <button class="start-button" data-id="{{item.id}}" bindtap="startList">开始自查</button>
+      </view>
+    </view>
+  </view>
+
+  <view id="safety-manage" class="section manage-section" wx:if="{{selectedList}}">
+    <view class="section-head">
+      <view>
+        <view class="section-title">管理“{{selectedList.name}}”</view>
+        <view class="helper">可添加日常需要确认的项目，重点项目会醒目标记</view>
+      </view>
+      <button class="text-button" bindtap="closeManage">完成</button>
+    </view>
+    <view class="surface manage-card">
+      <view class="manage-row" wx:for="{{selectedList.items}}" wx:key="id">
+        <view class="critical-dot {{item.critical ? 'critical-dot--on' : ''}}"></view>
+        <view class="manage-label">{{item.label}}</view>
+        <view class="critical-tag" wx:if="{{item.critical}}">重点</view>
+        <button class="remove-button" data-id="{{item.id}}" bindtap="removeItem">删除</button>
+      </view>
+      <view class="add-panel">
+        <input class="form-input" maxlength="32" value="{{newItemLabel}}" placeholder="添加新的检查项目" bindinput="onNewItemLabel" />
+        <view class="critical-switch-row">
+          <view>
+            <view class="switch-title">设为重点检查</view>
+            <view class="helper">燃气、门锁等关键项目建议开启</view>
+          </view>
+          <switch color="#C86F00" checked="{{newItemCritical}}" bindchange="onNewItemCritical" />
+        </view>
+        <button class="outline-button add-button" bindtap="addItem">添加到清单</button>
+      </view>
+    </view>
+    <button class="delete-list-button" wx:if="{{selectedList.isCustom}}" bindtap="deleteSelectedList">删除这个自定义清单</button>
+  </view>
+
+  <view class="section history-section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">最近完成</view>
+        <view class="helper">仅保存在本机，最多保留 30 次</view>
+      </view>
+      <button class="text-button text-button--danger" wx:if="{{history.length}}" bindtap="clearHistory">清空</button>
+    </view>
+    <view class="surface" wx:if="{{recentHistory.length}}">
+      <view class="history-row" wx:for="{{recentHistory}}" wx:key="id">
+        <view class="history-check">✓</view>
+        <view class="history-main">
+          <view class="history-name">{{item.listName}}</view>
+          <view class="history-time">{{item.displayTime}} · {{item.itemCount}} 项全部确认</view>
+        </view>
+      </view>
+    </view>
+    <view class="surface empty-state" wx:else>
+      <view class="empty-mark">安</view>
+      <text>完成一次自查后，登记会显示在这里</text>
+    </view>
+  </view>
+
+  <view class="safety-notice">安心自查只用于辅助回忆，不代表绝对安全，也不能替代燃气报警器等专业设施。</view>
+</view>

@@ -1,0 +1,39 @@
+<view class="calculate-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">算</view>
+    <view>
+      <view class="heading-title">百分比与折扣</view>
+      <view class="helper">占比、折后价和涨跌幅实时计算</view>
+    </view>
+  </view>
+
+  <view class="mode-switch" role="tablist">
+    <button wx:for="{{modes}}" wx:key="id" class="mode-tab {{currentMode === item.id ? 'mode-tab--active' : ''}}" data-id="{{item.id}}" bindtap="switchMode">{{item.label}}</button>
+  </view>
+
+  <view class="helper formula-note">这是 1.2.x 历史分享与收藏的兼容页面，功能继续可用，但不再占用新版工具抽屉入口。</view>
+
+  <view class="surface calculator-card">
+    <view class="field-block">
+      <view class="field-label">{{modeInfo.firstLabel}}</view>
+      <input class="value-input" type="digit" value="{{firstValue}}" placeholder="{{modeInfo.firstPlaceholder}}" bindinput="onFirstInput" />
+    </view>
+    <view class="field-block field-block--last">
+      <view class="field-label">{{modeInfo.secondLabel}}</view>
+      <input class="value-input" type="digit" value="{{secondValue}}" placeholder="{{modeInfo.secondPlaceholder}}" bindinput="onSecondInput" />
+    </view>
+  </view>
+
+  <view class="result-card {{result ? 'result-card--ready' : ''}}">
+    <view class="result-label">计算结果</view>
+    <view class="result-value" wx:if="{{result}}">{{result}}</view>
+    <view class="result-detail" wx:if="{{detail}}">{{detail}}</view>
+    <view class="result-placeholder" wx:else>输入两个数值后自动计算</view>
+  </view>
+
+  <view class="action-row">
+    <button class="outline-button action-button" bindtap="clearAll">清空</button>
+    <button class="primary-button action-button action-button--last" disabled="{{!result}}" bindtap="copyResult">复制结果</button>
+  </view>
+  <view class="helper formula-note" wx:if="{{currentMode === 'discount'}}">折扣范围为 0–10，例如 8.5 表示八五折。</view>
+</view>

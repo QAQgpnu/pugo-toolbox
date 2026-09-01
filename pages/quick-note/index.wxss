@@ -1,0 +1,2 @@
+@import "../../styles/tool-form.wxss";
+.form-submit { margin-top: 26rpx; }

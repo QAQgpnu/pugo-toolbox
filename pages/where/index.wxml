@@ -1,0 +1,29 @@
+<view class="page-shell">
+  <view class="tool-intro">
+    <view class="tool-intro-kicker">防健忘 · 本机保存</view>
+    <view class="tool-intro-title">东西放下，位置记下</view>
+    <view class="tool-intro-desc">记录钥匙、工具、证件或说明书放在哪里。下次搜索名字就能找到。</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title-row"><view class="section-title">记住一个位置</view><button class="example-chip" bindtap="fillExample" hover-class="example-chip--pressed">试试示例</button></view>
+    <view class="surface form-card">
+      <view class="field"><view class="field-label">什么东西</view><input class="field-input" value="{{name}}" maxlength="40" placeholder="例如：螺丝刀" placeholder-class="field-placeholder" bindinput="onNameInput" /></view>
+      <view class="field"><view class="field-label">放在哪里</view><input class="field-input" value="{{place}}" maxlength="80" placeholder="例如：阳台工具柜第二层" placeholder-class="field-placeholder" bindinput="onPlaceInput" /></view>
+      <view class="field"><view class="field-label">标签（选填）</view><input class="field-input" value="{{tag}}" maxlength="20" placeholder="例如：工具" placeholder-class="field-placeholder" bindinput="onTagInput" /></view>
+      <button class="primary-button form-submit" bindtap="saveRecord">记住这个位置</button>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">马上找东西</view>
+    <input class="search-input-card" value="{{query}}" placeholder="搜索东西、位置或标签" placeholder-class="field-placeholder" bindinput="onSearchInput" />
+    <view wx:if="{{visibleRecords.length}}">
+      <view class="surface record-card" wx:for="{{visibleRecords}}" wx:key="id">
+        <view class="record-head"><view class="record-main"><view class="record-title">{{item.name}}<text class="record-tag" wx:if="{{item.tag}}">{{item.tag}}</text></view><view class="record-desc">{{item.place}}</view></view><button class="text-action" data-id="{{item.id}}" catchtap="removeRecord">删除</button></view>
+      </view>
+    </view>
+    <view class="surface empty-state" wx:else><view class="empty-mark">找</view><text>{{records.length ? '没有匹配的位置' : '记下第一件东西的位置吧'}}</text></view>
+  </view>
+  <view class="notice">位置记录只保存在当前设备。请勿记录门锁密码、银行卡号等敏感信息。</view>
+</view>

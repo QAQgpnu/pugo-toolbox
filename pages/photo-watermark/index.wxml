@@ -1,0 +1,55 @@
+<view class="watermark-page page-shell">
+  <view class="watermark-hero">
+    <view class="watermark-mark">时</view>
+    <view class="watermark-copy">
+      <view class="watermark-title">时间水印相机</view>
+      <view class="watermark-subtitle">拍照或选图，本机添加清晰时间</view>
+    </view>
+  </view>
+
+  <view class="privacy-strip"><text class="privacy-dot"></text>不调用 AI、云端或定位；照片和水印时间不写入工具历史</view>
+
+  <view class="photo-stage {{processing ? 'photo-stage--disabled' : ''}}" aria-disabled="{{processing}}" bindtap="onStageTap" hover-class="photo-stage--pressed">
+    <image class="photo-preview" wx:if="{{outputPath}}" src="{{outputPath}}" mode="aspectFit" />
+    <image class="photo-preview" wx:elif="{{sourcePath}}" src="{{sourcePath}}" mode="aspectFit" />
+    <view class="photo-empty" wx:else>
+      <view class="empty-icon">＋</view>
+      <view class="empty-title">拍照或从相册选择</view>
+      <view class="empty-copy">选择后可校正日期、时间和水印位置</view>
+    </view>
+    <view class="processing-mask" wx:if="{{processing}}">正在本机处理，请稍候…</view>
+  </view>
+  <button class="change-photo" wx:if="{{sourcePath}}" disabled="{{processing}}" bindtap="chooseImage">重新拍摄或选择</button>
+
+  <view class="control-card" wx:if="{{sourcePath}}">
+    <view class="control-title">水印时间</view>
+    <view class="picker-row">
+      <picker class="picker-wrap" mode="date" value="{{watermarkDate}}" start="2000-01-01" end="2099-12-31" disabled="{{processing}}" bindchange="onDateChange">
+        <view class="picker-field"><view class="picker-label">日期</view><view class="picker-value">{{watermarkDate}}</view></view>
+      </picker>
+      <picker class="picker-wrap picker-wrap--last" mode="time" value="{{watermarkTime}}" disabled="{{processing}}" bindchange="onTimeChange">
+        <view class="picker-field"><view class="picker-label">时间</view><view class="picker-value">{{watermarkTime}}</view></view>
+      </picker>
+    </view>
+    <button class="now-button" disabled="{{processing}}" bindtap="useCurrentTime">恢复设备当前时间</button>
+
+    <view class="control-title control-title--spaced">水印位置</view>
+    <view class="position-row">
+      <button wx:for="{{positions}}" wx:key="id" class="position-option {{positionId === item.id ? 'position-option--active' : ''}}" disabled="{{processing}}" data-id="{{item.id}}" bindtap="selectPosition">{{item.name}}</button>
+    </view>
+
+    <view class="watermark-preview"><view class="preview-label">水印内容</view><view class="preview-value">{{watermarkText}}</view></view>
+    <button class="generate-button" disabled="{{processing}}" bindtap="generateWatermark">{{processing ? '正在生成…' : '生成水印照片'}}</button>
+  </view>
+
+  <view class="result-card" wx:if="{{outputPath}}">
+    <view class="result-copy"><view class="result-title">水印照片已生成</view><view class="result-meta">{{outputDimensions}} px · JPG</view></view>
+    <view class="action-row">
+      <button class="preview-button" disabled="{{processing}}" bindtap="previewOutput">查看大图</button>
+      <button class="save-button" disabled="{{processing}}" bindtap="saveOutput">保存到相册</button>
+    </view>
+  </view>
+
+  <view class="local-note">默认使用设备当前本地时间，不读取定位，也不会自动读取照片 EXIF。旧照片请用日期和时间选择器手动校正；只有点击“保存到相册”后才申请系统保存权限。</view>
+  <canvas class="processor-canvas" canvas-id="watermarkCanvas" width="{{canvasWidth}}" height="{{canvasHeight}}" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+</view>

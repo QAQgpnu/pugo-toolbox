@@ -1,0 +1,77 @@
+<view class="random-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">随</view>
+    <view>
+      <view class="heading-title">随机选择</view>
+      <view class="helper">纠结时，让运气帮你选一个</view>
+    </view>
+  </view>
+
+  <view class="mode-switch" role="tablist">
+    <button class="mode-tab {{mode === 'single' ? 'mode-tab--active' : ''}}" data-mode="single" bindtap="switchMode">随机选一个</button>
+    <button class="mode-tab {{mode === 'group' ? 'mode-tab--active' : ''}}" data-mode="group" bindtap="switchMode">随机分组</button>
+  </view>
+
+  <view class="section input-section">
+    <view class="section-head">
+      <view class="section-title">候选清单</view>
+      <view class="option-count {{optionCount >= 2 ? 'option-count--ready' : ''}}">{{optionCount}} 个有效选项</view>
+    </view>
+    <view class="surface input-panel">
+      <textarea
+        class="option-input"
+        value="{{inputValue}}"
+        maxlength="-1"
+        placeholder="{{inputPlaceholder}}"
+        placeholder-class="input-placeholder"
+        bindinput="onOptionsInput"
+      />
+      <view class="input-footer">
+        <view class="input-tip">自动忽略空行和重复项</view>
+        <button class="example-button" bindtap="fillExample">填入示例</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="group-config" wx:if="{{mode === 'group'}}">
+    <view class="group-label">分成几组</view>
+    <view class="group-input-wrap">
+      <input class="group-input" type="number" value="{{groupCount}}" bindinput="onGroupCountInput" />
+      <text>组</text>
+    </view>
+  </view>
+
+  <button class="primary-button draw-button" disabled="{{!canDraw}}" bindtap="chooseRandom">{{mode === 'group' ? '开始随机分组' : '帮我选一个'}}</button>
+
+  <view class="result-card {{result ? 'result-card--ready' : ''}}" wx:if="{{mode === 'single'}}">
+    <view class="result-kicker">{{result ? '这次就是' : '等待开奖'}}</view>
+    <view class="result-text" wx:if="{{result}}">{{result}}</view>
+    <view class="result-placeholder" wx:else>输入至少 2 个选项后开始</view>
+  </view>
+
+  <view class="group-results" wx:if="{{mode === 'group' && groupResults.length}}">
+    <view class="group-card-cell" wx:for="{{groupResults}}" wx:key="name">
+      <view class="group-card">
+        <view class="group-name">{{item.name}}</view>
+        <view class="group-member" wx:for="{{item.items}}" wx:for-item="member" wx:key="*this">{{member}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section history-section" wx:if="{{mode === 'single'}}">
+    <view class="section-head">
+      <view class="section-title">最近结果</view>
+      <button class="clear-button" wx:if="{{history.length}}" bindtap="clearHistory">清空</button>
+    </view>
+    <view class="surface" wx:if="{{history.length}}">
+      <view class="history-row" wx:for="{{history}}" wx:key="index">
+        <view class="history-index">{{index + 1}}</view>
+        <text class="history-value">{{item}}</text>
+      </view>
+    </view>
+    <view class="surface empty-state history-empty" wx:else>
+      <view class="empty-mark">随</view>
+      <text>最近 5 次结果会保存在本机</text>
+    </view>
+  </view>
+</view>

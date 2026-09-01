@@ -1,0 +1,78 @@
+<view class="page-shell page-shell--with-nav">
+  <view class="info-banner">
+    <view class="shield-mark">本机</view>
+    <view>
+      <view class="info-title">普通工具数据保存在当前设备</view>
+      <view class="helper">无需登录；数据处理范围请查看隐私说明。</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">偏好</view>
+    <view class="surface">
+      <view class="row">
+        <view class="row-main">
+          <view class="row-title">随机结果振动反馈</view>
+          <view class="row-desc">设备支持时，选出结果后轻振一下</view>
+        </view>
+        <switch color="#078C82" checked="{{settings.vibration}}" bindchange="onVibrationChange" />
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">数据管理</view>
+    <view class="surface">
+      <view class="action-row" bindtap="clearRecent">
+        <text>清空最近使用</text>
+        <view class="chevron"></view>
+      </view>
+      <view class="action-row" bindtap="clearRandomHistory">
+        <text>清空随机记录</text>
+        <view class="chevron"></view>
+      </view>
+      <view class="action-row" bindtap="clearSafetyRecords">
+        <text>清空安心自查记录</text>
+        <view class="chevron"></view>
+      </view>
+      <view class="action-row" bindtap="clearDailyToolRecords">
+        <text>清空新增生活工具记录</text>
+        <view class="chevron"></view>
+      </view>
+      <view class="action-row" bindtap="clearPrivateRecords">
+        <text>清空周期与游戏提醒记录</text>
+        <view class="chevron"></view>
+      </view>
+      <view class="action-row action-row--danger" bindtap="clearAll">
+        <text>清空全部本地数据</text>
+        <view class="chevron"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">说明与支持</view>
+    <view class="surface">
+      <view class="action-row" bindtap="openPrivacy" hover-class="action-row--pressed">
+        <text>隐私与数据说明</text>
+        <view class="chevron"></view>
+      </view>
+      <button class="action-row feedback-row" open-type="feedback" hover-class="action-row--pressed">
+        <text>问题反馈</text>
+        <view class="chevron"></view>
+      </button>
+      <view class="action-row" bindtap="openAbout" hover-class="action-row--pressed">
+        <text>关于浦哥工具箱</text>
+        <text class="version">v{{version}}</text>
+        <view class="chevron"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="release-note">
+    <view class="release-title">浦哥工具箱 v{{version}}</view>
+    <view class="helper">当前版本不登录；图片、试算和成分内容在本机处理，普通记录默认只保存在当前设备。</view>
+  </view>
+</view>
+
+<bottom-nav current="settings" />

@@ -1,0 +1,142 @@
+.money-page {
+  padding-top: calc(42rpx + env(safe-area-inset-top));
+}
+
+.page-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.heading-mark {
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 78rpx;
+  height: 78rpx;
+  margin-right: 22rpx;
+  border: 3rpx solid #078c82;
+  border-radius: 22rpx;
+  color: #078c82;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.heading-title {
+  margin-bottom: 5rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.input-card {
+  margin-top: 32rpx;
+  padding: 26rpx;
+}
+
+.field-label,
+.result-label {
+  color: #61716c;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.amount-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 104rpx;
+  margin-top: 12rpx;
+  padding: 0 22rpx;
+  border: 2rpx solid #c5d0cc;
+  border-radius: 18rpx;
+  background: #fbfcfc;
+}
+
+.currency-mark {
+  margin-right: 12rpx;
+  color: #078c82;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.amount-input {
+  flex: 1;
+  min-width: 0;
+  color: #122129;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.input-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 14rpx;
+  color: #71807b;
+  font-size: 23rpx;
+}
+
+.example-link {
+  color: #078c82;
+  font-weight: 700;
+}
+
+.result-card {
+  min-height: 196rpx;
+  margin-top: 26rpx;
+  padding: 28rpx;
+  border: 2rpx dashed #c8d3cf;
+  border-radius: 24rpx;
+  background: #f1f5f3;
+}
+
+.result-card--ready {
+  border-color: #77bbb5;
+  border-style: solid;
+  background: #eaf7f5;
+}
+
+.result-value {
+  display: block;
+  margin-top: 18rpx;
+  color: #067a71;
+  font-size: 38rpx;
+  font-weight: 800;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.result-placeholder,
+.error-copy {
+  margin-top: 18rpx;
+  color: #71807b;
+  font-size: 25rpx;
+  line-height: 1.5;
+}
+
+.error-copy {
+  color: #b66500;
+}
+
+.action-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 26rpx;
+}
+
+.action-button {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-button--last {
+  margin-left: 18rpx;
+}
+
+.safety-note {
+  margin-top: 18rpx;
+  text-align: center;
+}

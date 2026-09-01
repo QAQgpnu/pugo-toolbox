@@ -1,0 +1,149 @@
+<view class="date-page page-shell">
+  <view class="page-intro">
+    <view class="page-title">日期计算</view>
+    <view class="page-subtitle">按日历日期计算，不受夏令时影响</view>
+  </view>
+
+  <view class="mode-switch" role="tablist" aria-label="日期计算模式">
+    <button
+      class="mode-tab {{mode === 'between' ? 'mode-tab--active' : ''}}"
+      data-mode="between"
+      bindtap="switchMode"
+      aria-selected="{{mode === 'between'}}"
+    >相隔天数</button>
+    <button
+      class="mode-tab {{mode === 'countdown' ? 'mode-tab--active' : ''}}"
+      data-mode="countdown"
+      bindtap="switchMode"
+      aria-selected="{{mode === 'countdown'}}"
+    >倒数日</button>
+    <button
+      class="mode-tab {{mode === 'offset' ? 'mode-tab--active' : ''}}"
+      data-mode="offset"
+      bindtap="switchMode"
+      aria-selected="{{mode === 'offset'}}"
+    >日期加减</button>
+  </view>
+
+  <block wx:if="{{mode === 'between'}}">
+    <view class="section">
+      <view class="section-title">选择两个日期</view>
+      <view class="surface date-fields">
+        <view class="date-field">
+          <view class="date-field__label">
+            <view class="row-title">起始日期</view>
+            <view class="row-desc">从这一天开始</view>
+          </view>
+          <view class="date-control-row">
+            <picker class="date-picker" mode="date" value="{{startDate}}" start="1900-01-01" end="2999-12-31" bindchange="onStartDateChange">
+              <view class="date-value">{{startDate}}<view class="down-arrow"></view></view>
+            </picker>
+            <button class="today-button" data-field="startDate" catchtap="setToToday">今天</button>
+          </view>
+        </view>
+
+        <view class="date-field">
+          <view class="date-field__label">
+            <view class="row-title">结束日期</view>
+            <view class="row-desc">算到这一天</view>
+          </view>
+          <view class="date-control-row">
+            <picker class="date-picker" mode="date" value="{{endDate}}" start="1900-01-01" end="2999-12-31" bindchange="onEndDateChange">
+              <view class="date-value">{{endDate}}<view class="down-arrow"></view></view>
+            </picker>
+            <button class="today-button" data-field="endDate" catchtap="setToToday">今天</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-panel">
+      <view class="result-label">两个日期相隔</view>
+      <view class="result-main">
+        <text class="result-number">{{gapDays}}</text>
+        <text class="result-unit">天</text>
+      </view>
+      <view class="result-detail">如果首尾两天都算，共 {{inclusiveDays}} 天</view>
+    </view>
+  </block>
+
+  <block wx:elif="{{mode === 'countdown'}}">
+    <view class="section">
+      <view class="section-title">选择目标日期</view>
+      <view class="surface date-fields">
+        <view class="date-field date-field--single">
+          <view class="date-field__label">
+            <view class="row-title">目标日期</view>
+            <view class="row-desc">今天是 {{today}}</view>
+          </view>
+          <view class="date-control-row">
+            <picker class="date-picker" mode="date" value="{{targetDate}}" start="1900-01-01" end="2999-12-31" bindchange="onTargetDateChange">
+              <view class="date-value">{{targetDate}}<view class="down-arrow"></view></view>
+            </picker>
+            <button class="today-button" data-field="targetDate" catchtap="setToToday">今天</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-panel result-panel--{{countdownStatus}}">
+      <block wx:if="{{countdownStatus === 'today'}}">
+        <view class="today-result">就是今天</view>
+        <view class="result-detail">目标日已经到啦</view>
+      </block>
+      <block wx:else>
+        <view class="result-label">{{countdownPrefix}}</view>
+        <view class="result-main">
+          <text class="result-number">{{countdownDays}}</text>
+          <text class="result-unit">天</text>
+        </view>
+        <view class="result-detail">{{targetDate}}</view>
+      </block>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="section">
+      <view class="section-title">从哪一天开始计算</view>
+      <view class="surface date-fields">
+        <view class="date-field date-field--single">
+          <view class="date-field__label">
+            <view class="row-title">基准日期</view>
+            <view class="row-desc">输入负数可向前计算</view>
+          </view>
+          <view class="date-control-row">
+            <picker class="date-picker" mode="date" value="{{offsetBaseDate}}" start="1900-01-01" end="2999-12-31" bindchange="onOffsetBaseDateChange">
+              <view class="date-value">{{offsetBaseDate}}<view class="down-arrow"></view></view>
+            </picker>
+            <button class="today-button" data-field="offsetBaseDate" catchtap="setToToday">今天</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section offset-section">
+      <view class="section-title">增加或减少天数</view>
+      <view class="surface offset-panel">
+        <input class="offset-input" type="number" value="{{offsetDays}}" placeholder="例如 30 或 -7" bindinput="onOffsetDaysInput" />
+        <text class="offset-unit">天</text>
+      </view>
+      <view class="offset-presets">
+        <button class="offset-preset" data-days="-30" bindtap="applyOffsetPreset">-30</button>
+        <button class="offset-preset" data-days="-7" bindtap="applyOffsetPreset">-7</button>
+        <button class="offset-preset" data-days="7" bindtap="applyOffsetPreset">+7</button>
+        <button class="offset-preset" data-days="30" bindtap="applyOffsetPreset">+30</button>
+      </view>
+    </view>
+
+    <view class="result-panel">
+      <view class="result-label">计算结果</view>
+      <view class="offset-result" wx:if="{{shiftedDate}}">{{shiftedDate}}</view>
+      <view class="result-detail" wx:else>请输入 -365000 到 365000 之间的整数</view>
+    </view>
+  </block>
+
+  <view class="calculation-note">
+    <view class="note-mark">日</view>
+    <view class="helper">结果只比较年月日，不按 24 小时时长换算；跨时区或夏令时切换也不会多算或少算一天。</view>
+  </view>
+</view>

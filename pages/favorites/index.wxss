@@ -1,0 +1,52 @@
+.favorite-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 120rpx;
+  padding: 18rpx 22rpx;
+}
+
+.favorite-row + .favorite-row {
+  border-top: 1rpx solid #e3e9e6;
+}
+
+.tool-symbol {
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 68rpx;
+  height: 68rpx;
+  margin-right: 22rpx;
+  border: 3rpx solid #078c82;
+  border-radius: 17rpx;
+  color: #078c82;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.remove-button {
+  min-width: 88rpx;
+  padding: 14rpx 12rpx;
+  background: transparent;
+  color: #dc8600;
+  font-size: 24rpx;
+}
+
+.favorites-empty {
+  margin-top: 24rpx;
+  padding: 60rpx 40rpx;
+}
+
+.empty-title {
+  margin-bottom: 12rpx;
+  color: #122129;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.home-button {
+  min-width: 220rpx;
+  margin-top: 32rpx;
+}

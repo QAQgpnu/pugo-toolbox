@@ -1,0 +1,72 @@
+<view class="fund-page page-shell">
+  <view class="feature-hero">
+    <view class="hero-mark">积</view>
+    <view class="hero-copy">
+      <view class="hero-title">公积金缴存试算</view>
+      <view class="hero-subtitle">拆开看个人、单位和未来累计</view>
+    </view>
+  </view>
+
+  <view class="privacy-note">填写内容仅用于本次本机计算，不保存收入、余额或测算结果。</view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">缴存信息</view>
+      <button class="example-button" bindtap="fillExample">填入示例</button>
+    </view>
+    <view class="surface form-panel">
+      <view class="field-block">
+        <view class="field-label">月缴存基数</view>
+        <view class="input-shell"><input class="number-input" type="digit" value="{{base}}" maxlength="12" placeholder="例如 8000" data-field="base" bindinput="onFieldInput" /><text class="input-unit">元</text></view>
+      </view>
+      <view class="double-row">
+        <view class="half-field">
+          <view class="field-label">个人比例</view>
+          <view class="input-shell"><input class="number-input" type="digit" value="{{personalRate}}" maxlength="5" placeholder="例如 5" data-field="personalRate" bindinput="onFieldInput" /><text class="input-unit">%</text></view>
+        </view>
+        <view class="half-field half-field--last">
+          <view class="field-label">单位比例</view>
+          <view class="input-shell"><input class="number-input" type="digit" value="{{employerRate}}" maxlength="5" placeholder="例如 5" data-field="employerRate" bindinput="onFieldInput" /><text class="input-unit">%</text></view>
+        </view>
+      </view>
+      <view class="optional-band">以下用于看未来累计，不填则按余额 0 元、12 个月试算</view>
+      <view class="double-row">
+        <view class="half-field">
+          <view class="field-label">当前余额（可选）</view>
+          <view class="input-shell"><input class="number-input" type="digit" value="{{currentBalance}}" maxlength="14" placeholder="0" data-field="currentBalance" bindinput="onFieldInput" /><text class="input-unit">元</text></view>
+        </view>
+        <view class="half-field half-field--last">
+          <view class="field-label">投影月数（可选）</view>
+          <view class="input-shell"><input class="number-input" type="number" value="{{months}}" maxlength="3" placeholder="12" data-field="months" bindinput="onFieldInput" /><text class="input-unit">月</text></view>
+        </view>
+      </view>
+      <button class="calculate-button" bindtap="calculate">开始试算</button>
+    </view>
+  </view>
+
+  <view class="result-section" wx:if="{{result}}">
+    <view class="result-primary">
+      <view class="result-primary-label">每月合计缴存</view>
+      <view class="result-primary-number">¥ {{result.totalMonthlyText}}</view>
+      <view class="result-primary-caption">个人与单位月缴存额分别取整后相加</view>
+    </view>
+    <view class="split-result">
+      <view class="split-item"><view class="split-label">个人每月</view><view class="split-value">¥ {{result.personalMonthlyText}}</view></view>
+      <view class="split-divider"></view>
+      <view class="split-item"><view class="split-label">单位每月</view><view class="split-value">¥ {{result.employerMonthlyText}}</view></view>
+    </view>
+    <view class="detail-list surface">
+      <view class="detail-row"><text>个人一年缴存</text><text class="detail-value">¥ {{result.personalAnnualText}}</text></view>
+      <view class="detail-row"><text>单位一年缴存</text><text class="detail-value">¥ {{result.employerAnnualText}}</text></view>
+      <view class="detail-row"><text>一年合计缴存</text><text class="detail-value">¥ {{result.totalAnnualText}}</text></view>
+      <view class="detail-row detail-row--accent"><text>{{result.projectionMonths}} 个月新增</text><text class="detail-value">¥ {{result.projectedContributionText}}</text></view>
+      <view class="detail-row"><text>预计余额（未计利息）</text><text class="detail-value">¥ {{result.projectedBalanceText}}</text></view>
+    </view>
+    <button class="clear-result" bindtap="clearAll">重新填写</button>
+  </view>
+
+  <view class="rules-note">
+    <view class="rules-title">结果怎么看</view>
+    <view class="rules-copy">不同城市的缴存基数上下限、比例、补缴和利息规则不同。本结果只做日常预算，不作为单位申报或贷款额度依据，请以当地公积金中心和单位实际口径为准。</view>
+  </view>
+</view>

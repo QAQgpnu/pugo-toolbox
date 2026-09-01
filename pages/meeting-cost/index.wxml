@@ -1,0 +1,94 @@
+<view class="meeting-cost-page page-shell">
+  <view class="page-heading">
+    <view class="heading-mark">会</view>
+    <view>
+      <view class="heading-title">会议成本计时器</view>
+      <view class="helper">边开会边看成本，让每场会都值得</view>
+    </view>
+  </view>
+
+  <view class="surface setting-card">
+    <view class="setting-row">
+      <view class="setting-field">
+        <view class="field-label">参会人数</view>
+        <input class="setting-input" type="number" value="{{people}}" placeholder="如 5" placeholder-class="field-placeholder" bindinput="onPeopleInput" />
+      </view>
+      <view class="setting-field">
+        <view class="field-label">{{amountLabel}}</view>
+        <input class="setting-input" type="digit" value="{{amount}}" placeholder="如 12000" placeholder-class="field-placeholder" bindinput="onAmountInput" />
+      </view>
+    </view>
+
+    <view class="pay-types">
+      <view class="pay-type {{payType === 'monthly' ? 'pay-type--active' : ''}}" data-type="monthly" bindtap="selectPayType" hover-class="chip-pressed">按月薪折算</view>
+      <view class="pay-type {{payType === 'hourly' ? 'pay-type--active' : ''}}" data-type="hourly" bindtap="selectPayType" hover-class="chip-pressed">按时薪计算</view>
+    </view>
+
+    <view class="setting-row" wx:if="{{payType === 'monthly'}}">
+      <view class="setting-field">
+        <view class="field-label">每月工作天数</view>
+        <input class="setting-input" type="digit" value="{{workDaysPerMonth}}" placeholder="如 21.75" placeholder-class="field-placeholder" bindinput="onWorkDaysInput" />
+      </view>
+      <view class="setting-field">
+        <view class="field-label">每天工作小时</view>
+        <input class="setting-input" type="digit" value="{{workHoursPerDay}}" placeholder="如 8" placeholder-class="field-placeholder" bindinput="onWorkHoursInput" />
+      </view>
+    </view>
+
+    <view class="rate-hint {{rateReady ? 'rate-hint--ready' : ''}}">{{rateHint}}</view>
+  </view>
+
+  <view class="surface timer-card">
+    <view class="timer-clock">{{clock}}</view>
+    <view class="timer-cost">估算成本 {{liveCost}}</view>
+    <view class="timer-actions" wx:if="{{status === 'idle'}}">
+      <button class="primary-button timer-action timer-action--full" hover-class="button-pressed" bindtap="startMeeting">开始计时</button>
+    </view>
+    <view class="timer-actions" wx:if="{{status === 'running'}}">
+      <button class="outline-button timer-action" hover-class="button-pressed" bindtap="pauseMeeting">暂停</button>
+      <button class="primary-button timer-action" hover-class="button-pressed" bindtap="finishMeeting">结束</button>
+    </view>
+    <view class="timer-actions" wx:if="{{status === 'paused'}}">
+      <button class="outline-button timer-action" hover-class="button-pressed" bindtap="resumeMeeting">继续</button>
+      <button class="primary-button timer-action" hover-class="button-pressed" bindtap="finishMeeting">结束</button>
+    </view>
+  </view>
+
+  <view class="surface week-card">
+    <view class="week-title">本周统计</view>
+    <view class="week-row">
+      <view class="week-item">
+        <view class="week-value">{{weekCount}}</view>
+        <view class="week-label">会议次数</view>
+      </view>
+      <view class="week-item">
+        <view class="week-value">{{weekDurationText}}</view>
+        <view class="week-label">累计时长</view>
+      </view>
+      <view class="week-item">
+        <view class="week-value">{{weekCostText}}</view>
+        <view class="week-label">累计成本</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="surface record-card">
+    <view class="record-head">
+      <view class="field-label">会议记录</view>
+      <view class="record-undo" wx:if="{{canUndoDelete}}" bindtap="undoDelete" hover-class="chip-pressed">撤回删除</view>
+    </view>
+
+    <view class="record-list" wx:if="{{records.length}}">
+      <view class="record-row" wx:for="{{records}}" wx:key="id">
+        <view class="record-main">
+          <view class="record-time">{{item.timeText}} · {{item.people}} 人</view>
+          <view class="record-meta">时长 {{item.durationText}} · 成本 {{item.costText}}</view>
+        </view>
+        <view class="record-delete" data-id="{{item.id}}" bindtap="deleteRecord" hover-class="chip-pressed">删除</view>
+      </view>
+    </view>
+    <view class="record-empty helper" wx:else>还没有记录，结束一次计时后会自动保存在这里</view>
+  </view>
+
+  <view class="helper privacy-note">记录只保存在本机 · 不收集参会人姓名和公司信息</view>
+</view>
